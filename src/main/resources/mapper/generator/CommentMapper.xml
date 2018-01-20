@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Comment">
+    <result column="comment_id" jdbcType="VARCHAR" property="commentId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="comment_createtime" jdbcType="VARCHAR" property="commentCreatetime" />
+    <result column="
+comment_content" jdbcType="VARCHAR" property="
+commentContent" />
+    <result column="comment_status" jdbcType="VARCHAR" property="commentStatus" />
+    <result column="comment_img" jdbcType="VARCHAR" property="commentImg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    comment_id, user_id, product_id, comment_createtime, 
+comment_content, comment_status, 
+    comment_img
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample">
+    delete from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Comment">
+    insert into comment (comment_id, user_id, product_id, 
+      comment_createtime, 
+comment_content, comment_status, 
+      comment_img)
+    values (#{commentId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{commentCreatetime,jdbcType=VARCHAR}, #{
+commentContent,jdbcType=VARCHAR}, #{commentStatus,jdbcType=VARCHAR}, 
+      #{commentImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="commentCreatetime != null">
+        comment_createtime,
+      </if>
+      <if test="
+commentContent != null">
+        
+comment_content,
+      </if>
+      <if test="commentStatus != null">
+        comment_status,
+      </if>
+      <if test="commentImg != null">
+        comment_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCreatetime != null">
+        #{commentCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="
+commentContent != null">
+        #{
+commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStatus != null">
+        #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentImg != null">
+        #{commentImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample" resultType="java.lang.Long">
+    select count(*) from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update comment
+    <set>
+      <if test="record.commentId != null">
+        comment_id = #{record.commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentCreatetime != null">
+        comment_createtime = #{record.commentCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.
+commentContent != null">
+        
+comment_content = #{record.
+commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentStatus != null">
+        comment_status = #{record.commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentImg != null">
+        comment_img = #{record.commentImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update comment
+    set comment_id = #{record.commentId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=VARCHAR},
+      comment_createtime = #{record.commentCreatetime,jdbcType=VARCHAR},
+      
+comment_content = #{record.
+commentContent,jdbcType=VARCHAR},
+      comment_status = #{record.commentStatus,jdbcType=VARCHAR},
+      comment_img = #{record.commentImg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

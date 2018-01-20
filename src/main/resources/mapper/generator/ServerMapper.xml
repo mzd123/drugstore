@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.ServerMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Server">
+    <result column="server_id" jdbcType="VARCHAR" property="serverId" />
+    <result column="server_content" jdbcType="VARCHAR" property="serverContent" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="afterserver_id" jdbcType="VARCHAR" property="afterserverId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    server_id, server_content, order_id, afterserver_id
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample">
+    delete from server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Server">
+    insert into server (server_id, server_content, order_id, 
+      afterserver_id)
+    values (#{serverId,jdbcType=VARCHAR}, #{serverContent,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{afterserverId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Server">
+    insert into server
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serverId != null">
+        server_id,
+      </if>
+      <if test="serverContent != null">
+        server_content,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="afterserverId != null">
+        afterserver_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serverId != null">
+        #{serverId,jdbcType=VARCHAR},
+      </if>
+      <if test="serverContent != null">
+        #{serverContent,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverId != null">
+        #{afterserverId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample" resultType="java.lang.Long">
+    select count(*) from server
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update server
+    <set>
+      <if test="record.serverId != null">
+        server_id = #{record.serverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverContent != null">
+        server_content = #{record.serverContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverId != null">
+        afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update server
+    set server_id = #{record.serverId,jdbcType=VARCHAR},
+      server_content = #{record.serverContent,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      afterserver_id = #{record.afterserverId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

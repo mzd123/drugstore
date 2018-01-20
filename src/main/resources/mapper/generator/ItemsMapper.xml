@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.ItemsMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Items">
+    <result column="items_id" jdbcType="VARCHAR" property="itemsId" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="product_number" jdbcType="VARCHAR" property="productNumber" />
+    <result column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="items_money" jdbcType="VARCHAR" property="itemsMoney" />
+    <result column="items_status" jdbcType="VARCHAR" property="itemsStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    items_id, product_id, order_id, product_number, car_id, items_money, items_status
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from items
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample">
+    delete from items
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Items">
+    insert into items (items_id, product_id, order_id, 
+      product_number, car_id, items_money, 
+      items_status)
+    values (#{itemsId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{productNumber,jdbcType=VARCHAR}, #{carId,jdbcType=VARCHAR}, #{itemsMoney,jdbcType=VARCHAR}, 
+      #{itemsStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Items">
+    insert into items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemsId != null">
+        items_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="productNumber != null">
+        product_number,
+      </if>
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="itemsMoney != null">
+        items_money,
+      </if>
+      <if test="itemsStatus != null">
+        items_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemsId != null">
+        #{itemsId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null">
+        #{productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null">
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsMoney != null">
+        #{itemsMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsStatus != null">
+        #{itemsStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample" resultType="java.lang.Long">
+    select count(*) from items
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update items
+    <set>
+      <if test="record.itemsId != null">
+        items_id = #{record.itemsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productNumber != null">
+        product_number = #{record.productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carId != null">
+        car_id = #{record.carId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemsMoney != null">
+        items_money = #{record.itemsMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemsStatus != null">
+        items_status = #{record.itemsStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update items
+    set items_id = #{record.itemsId,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      product_number = #{record.productNumber,jdbcType=VARCHAR},
+      car_id = #{record.carId,jdbcType=VARCHAR},
+      items_money = #{record.itemsMoney,jdbcType=VARCHAR},
+      items_status = #{record.itemsStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

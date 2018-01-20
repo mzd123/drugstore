@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Address">
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="address_location" jdbcType="VARCHAR" property="addressLocation" />
+    <result column="address_createtime" jdbcType="VARCHAR" property="addressCreatetime" />
+    <result column="address_status" jdbcType="VARCHAR" property="addressStatus" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    address_id, address_location, address_createtime, address_status, userid
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample">
+    delete from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Address">
+    insert into address (address_id, address_location, address_createtime, 
+      address_status, userid)
+    values (#{addressId,jdbcType=VARCHAR}, #{addressLocation,jdbcType=VARCHAR}, #{addressCreatetime,jdbcType=VARCHAR}, 
+      #{addressStatus,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="addressLocation != null">
+        address_location,
+      </if>
+      <if test="addressCreatetime != null">
+        address_createtime,
+      </if>
+      <if test="addressStatus != null">
+        address_status,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressLocation != null">
+        #{addressLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCreatetime != null">
+        #{addressCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStatus != null">
+        #{addressStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample" resultType="java.lang.Long">
+    select count(*) from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update address
+    <set>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressLocation != null">
+        address_location = #{record.addressLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressCreatetime != null">
+        address_createtime = #{record.addressCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressStatus != null">
+        address_status = #{record.addressStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update address
+    set address_id = #{record.addressId,jdbcType=VARCHAR},
+      address_location = #{record.addressLocation,jdbcType=VARCHAR},
+      address_createtime = #{record.addressCreatetime,jdbcType=VARCHAR},
+      address_status = #{record.addressStatus,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

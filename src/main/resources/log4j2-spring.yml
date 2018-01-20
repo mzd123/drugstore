@@ -1,0 +1,38 @@
+Appenders:  
+    Console:  #输出到控制台  
+      name: CONSOLE #Appender命名  
+      target: SYSTEM_OUT  
+      PatternLayout:  
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"  
+    RollingFile: # 输出日志到磁盘根目录/logs/springboot.log中，超过2KB的时候，或者到第二天时，自动打包为.zip到/logs/springboot/年-月/目录下，名字为springboot-年-月-日-今天第几个压缩包.log.zip
+      - name: ROLLING_FILE  
+        ignoreExceptions: false  
+        fileName: /logs/springboot.log
+        filePattern: "/logs/drugstore/$${date:yyyy-MM}/springboot -%d{yyyy-MM-dd}-%i.log.zip"
+        PatternLayout:  
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"  
+        Policies:  
+          SizeBasedTriggeringPolicy:
+          #每个.log文件最大为2KB
+            size: "2 M"
+        DefaultRolloverStrategy:
+        #每天打一次包
+          max: 1
+Loggers:
+    Root:
+      level: info #输出info以上的级别， 从高到底：ERROR、WARN、INFO、DEBUG
+      AppenderRef:  
+        - ref: CONSOLE  
+    Logger: #单独设置某些包的输出级别----不受level中配置的info限制
+      - name: com.mzd.drugstore.mapper  #打sql日志
+        additivity: false #去除重复的log
+        level: trace  
+        AppenderRef:  
+          - ref: CONSOLE #打印到控制台
+          - ref: ROLLING_FILE #输出到日志文件
+      - name: com.mzd.drugstore.dao   #在dao层配的日志也将被输出
+        additivity: false #去除重复的log
+        level: trace
+        AppenderRef:
+           - ref: CONSOLE  #打印到控制台
+           - ref: ROLLING_FILE #输出到日志文件

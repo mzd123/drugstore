@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Order">
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_summoney" jdbcType="VARCHAR" property="orderSummoney" />
+    <result column="order_stage" jdbcType="VARCHAR" property="orderStage" />
+    <result column="order_createtime" jdbcType="VARCHAR" property="orderCreatetime" />
+    <result column="order_origin" jdbcType="VARCHAR" property="orderOrigin" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_id, order_summoney, order_stage, order_createtime, order_origin, user_id, address_id, 
+    order_status
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample">
+    delete from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Order">
+    insert into order (order_id, order_summoney, order_stage, 
+      order_createtime, order_origin, user_id, 
+      address_id, order_status)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderSummoney,jdbcType=VARCHAR}, #{orderStage,jdbcType=VARCHAR}, 
+      #{orderCreatetime,jdbcType=VARCHAR}, #{orderOrigin,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderSummoney != null">
+        order_summoney,
+      </if>
+      <if test="orderStage != null">
+        order_stage,
+      </if>
+      <if test="orderCreatetime != null">
+        order_createtime,
+      </if>
+      <if test="orderOrigin != null">
+        order_origin,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSummoney != null">
+        #{orderSummoney,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStage != null">
+        #{orderStage,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreatetime != null">
+        #{orderCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOrigin != null">
+        #{orderOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample" resultType="java.lang.Long">
+    select count(*) from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSummoney != null">
+        order_summoney = #{record.orderSummoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStage != null">
+        order_stage = #{record.orderStage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCreatetime != null">
+        order_createtime = #{record.orderCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderOrigin != null">
+        order_origin = #{record.orderOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+      order_summoney = #{record.orderSummoney,jdbcType=VARCHAR},
+      order_stage = #{record.orderStage,jdbcType=VARCHAR},
+      order_createtime = #{record.orderCreatetime,jdbcType=VARCHAR},
+      order_origin = #{record.orderOrigin,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

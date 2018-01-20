@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.AfterserverMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Afterserver">
+    <result column="afterserver_id" jdbcType="VARCHAR" property="afterserverId" />
+    <result column="afterserver_class" jdbcType="VARCHAR" property="afterserverClass" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="afterserver_createtime" jdbcType="VARCHAR" property="afterserverCreatetime" />
+    <result column="afterserver_stage" jdbcType="VARCHAR" property="afterserverStage" />
+    <result column="afterserver_img" jdbcType="VARCHAR" property="afterserverImg" />
+    <result column="afterserver_classes" jdbcType="VARCHAR" property="afterserverClasses" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    afterserver_id, afterserver_class, user_id, order_id, afterserver_createtime, afterserver_stage, 
+    afterserver_img, afterserver_classes
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from afterserver
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample">
+    delete from afterserver
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
+    insert into afterserver (afterserver_id, afterserver_class, 
+      user_id, order_id, afterserver_createtime, 
+      afterserver_stage, afterserver_img, afterserver_classes
+      )
+    values (#{afterserverId,jdbcType=VARCHAR}, #{afterserverClass,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{afterserverCreatetime,jdbcType=VARCHAR}, 
+      #{afterserverStage,jdbcType=VARCHAR}, #{afterserverImg,jdbcType=VARCHAR}, #{afterserverClasses,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
+    insert into afterserver
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="afterserverId != null">
+        afterserver_id,
+      </if>
+      <if test="afterserverClass != null">
+        afterserver_class,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="afterserverCreatetime != null">
+        afterserver_createtime,
+      </if>
+      <if test="afterserverStage != null">
+        afterserver_stage,
+      </if>
+      <if test="afterserverImg != null">
+        afterserver_img,
+      </if>
+      <if test="afterserverClasses != null">
+        afterserver_classes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="afterserverId != null">
+        #{afterserverId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverClass != null">
+        #{afterserverClass,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverCreatetime != null">
+        #{afterserverCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverStage != null">
+        #{afterserverStage,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverImg != null">
+        #{afterserverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="afterserverClasses != null">
+        #{afterserverClasses,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample" resultType="java.lang.Long">
+    select count(*) from afterserver
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update afterserver
+    <set>
+      <if test="record.afterserverId != null">
+        afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverClass != null">
+        afterserver_class = #{record.afterserverClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverCreatetime != null">
+        afterserver_createtime = #{record.afterserverCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverStage != null">
+        afterserver_stage = #{record.afterserverStage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverImg != null">
+        afterserver_img = #{record.afterserverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterserverClasses != null">
+        afterserver_classes = #{record.afterserverClasses,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update afterserver
+    set afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
+      afterserver_class = #{record.afterserverClass,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      afterserver_createtime = #{record.afterserverCreatetime,jdbcType=VARCHAR},
+      afterserver_stage = #{record.afterserverStage,jdbcType=VARCHAR},
+      afterserver_img = #{record.afterserverImg,jdbcType=VARCHAR},
+      afterserver_classes = #{record.afterserverClasses,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
