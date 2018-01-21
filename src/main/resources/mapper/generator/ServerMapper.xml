@@ -6,6 +6,9 @@
     <result column="server_content" jdbcType="VARCHAR" property="serverContent" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="afterserver_id" jdbcType="VARCHAR" property="afterserverId" />
+    <result column="server_userid" jdbcType="VARCHAR" property="serverUserid" />
+    <result column="server_starttime" jdbcType="VARCHAR" property="serverStarttime" />
+    <result column="server_endtime" jdbcType="VARCHAR" property="serverEndtime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    server_id, server_content, order_id, afterserver_id
+    server_id, server_content, order_id, afterserver_id, server_userid, server_starttime, 
+    server_endtime
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample" resultMap="BaseResultMap">
     select
@@ -74,7 +78,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from server
+    from cs_server
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,19 +87,21 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample">
-    delete from server
+    delete from cs_server
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Server">
-    insert into server (server_id, server_content, order_id, 
-      afterserver_id)
+    insert into cs_server (server_id, server_content, order_id, 
+      afterserver_id, server_userid, server_starttime, 
+      server_endtime)
     values (#{serverId,jdbcType=VARCHAR}, #{serverContent,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
-      #{afterserverId,jdbcType=VARCHAR})
+      #{afterserverId,jdbcType=VARCHAR}, #{serverUserid,jdbcType=VARCHAR}, #{serverStarttime,jdbcType=VARCHAR}, 
+      #{serverEndtime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Server">
-    insert into server
+    insert into cs_server
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="serverId != null">
         server_id,
@@ -108,6 +114,15 @@
       </if>
       <if test="afterserverId != null">
         afterserver_id,
+      </if>
+      <if test="serverUserid != null">
+        server_userid,
+      </if>
+      <if test="serverStarttime != null">
+        server_starttime,
+      </if>
+      <if test="serverEndtime != null">
+        server_endtime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -123,16 +138,25 @@
       <if test="afterserverId != null">
         #{afterserverId,jdbcType=VARCHAR},
       </if>
+      <if test="serverUserid != null">
+        #{serverUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="serverStarttime != null">
+        #{serverStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="serverEndtime != null">
+        #{serverEndtime,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.ServerExample" resultType="java.lang.Long">
-    select count(*) from server
+    select count(*) from cs_server
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update server
+    update cs_server
     <set>
       <if test="record.serverId != null">
         server_id = #{record.serverId,jdbcType=VARCHAR},
@@ -146,17 +170,29 @@
       <if test="record.afterserverId != null">
         afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
       </if>
+      <if test="record.serverUserid != null">
+        server_userid = #{record.serverUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverStarttime != null">
+        server_starttime = #{record.serverStarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverEndtime != null">
+        server_endtime = #{record.serverEndtime,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update server
+    update cs_server
     set server_id = #{record.serverId,jdbcType=VARCHAR},
       server_content = #{record.serverContent,jdbcType=VARCHAR},
       order_id = #{record.orderId,jdbcType=VARCHAR},
-      afterserver_id = #{record.afterserverId,jdbcType=VARCHAR}
+      afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
+      server_userid = #{record.serverUserid,jdbcType=VARCHAR},
+      server_starttime = #{record.serverStarttime,jdbcType=VARCHAR},
+      server_endtime = #{record.serverEndtime,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

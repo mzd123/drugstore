@@ -9,12 +9,11 @@ public class Comment {
 
     private String commentCreatetime;
 
-    private String 
-commentContent;
-
     private String commentStatus;
 
     private String commentImg;
+
+    private String commentContent;
 
     public String getCommentId() {
         return commentId;
@@ -48,21 +47,6 @@ commentContent;
         this.commentCreatetime = commentCreatetime == null ? null : commentCreatetime.trim();
     }
 
-    public String get
-commentContent() {
-        return 
-commentContent;
-    }
-
-    public void set
-commentContent(String 
-commentContent) {
-        this.
-commentContent = 
-commentContent == null ? null : 
-commentContent.trim();
-    }
-
     public String getCommentStatus() {
         return commentStatus;
     }
@@ -77,5 +61,13 @@ commentContent.trim();
 
     public void setCommentImg(String commentImg) {
         this.commentImg = commentImg == null ? null : commentImg.trim();
+    }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent == null ? null : commentContent.trim();
     }
 }

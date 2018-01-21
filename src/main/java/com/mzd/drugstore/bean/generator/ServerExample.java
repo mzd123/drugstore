@@ -383,6 +383,216 @@ public class ServerExample {
             addCriterion("afterserver_id not between", value1, value2, "afterserverId");
             return (Criteria) this;
         }
+
+        public Criteria andServerUseridIsNull() {
+            addCriterion("server_userid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridIsNotNull() {
+            addCriterion("server_userid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridEqualTo(String value) {
+            addCriterion("server_userid =", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridNotEqualTo(String value) {
+            addCriterion("server_userid <>", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridGreaterThan(String value) {
+            addCriterion("server_userid >", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridGreaterThanOrEqualTo(String value) {
+            addCriterion("server_userid >=", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridLessThan(String value) {
+            addCriterion("server_userid <", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridLessThanOrEqualTo(String value) {
+            addCriterion("server_userid <=", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridLike(String value) {
+            addCriterion("server_userid like", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridNotLike(String value) {
+            addCriterion("server_userid not like", value, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridIn(List<String> values) {
+            addCriterion("server_userid in", values, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridNotIn(List<String> values) {
+            addCriterion("server_userid not in", values, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridBetween(String value1, String value2) {
+            addCriterion("server_userid between", value1, value2, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerUseridNotBetween(String value1, String value2) {
+            addCriterion("server_userid not between", value1, value2, "serverUserid");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeIsNull() {
+            addCriterion("server_starttime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeIsNotNull() {
+            addCriterion("server_starttime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeEqualTo(String value) {
+            addCriterion("server_starttime =", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeNotEqualTo(String value) {
+            addCriterion("server_starttime <>", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeGreaterThan(String value) {
+            addCriterion("server_starttime >", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeGreaterThanOrEqualTo(String value) {
+            addCriterion("server_starttime >=", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeLessThan(String value) {
+            addCriterion("server_starttime <", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeLessThanOrEqualTo(String value) {
+            addCriterion("server_starttime <=", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeLike(String value) {
+            addCriterion("server_starttime like", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeNotLike(String value) {
+            addCriterion("server_starttime not like", value, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeIn(List<String> values) {
+            addCriterion("server_starttime in", values, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeNotIn(List<String> values) {
+            addCriterion("server_starttime not in", values, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeBetween(String value1, String value2) {
+            addCriterion("server_starttime between", value1, value2, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerStarttimeNotBetween(String value1, String value2) {
+            addCriterion("server_starttime not between", value1, value2, "serverStarttime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeIsNull() {
+            addCriterion("server_endtime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeIsNotNull() {
+            addCriterion("server_endtime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeEqualTo(String value) {
+            addCriterion("server_endtime =", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeNotEqualTo(String value) {
+            addCriterion("server_endtime <>", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeGreaterThan(String value) {
+            addCriterion("server_endtime >", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeGreaterThanOrEqualTo(String value) {
+            addCriterion("server_endtime >=", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeLessThan(String value) {
+            addCriterion("server_endtime <", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeLessThanOrEqualTo(String value) {
+            addCriterion("server_endtime <=", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeLike(String value) {
+            addCriterion("server_endtime like", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeNotLike(String value) {
+            addCriterion("server_endtime not like", value, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeIn(List<String> values) {
+            addCriterion("server_endtime in", values, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeNotIn(List<String> values) {
+            addCriterion("server_endtime not in", values, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeBetween(String value1, String value2) {
+            addCriterion("server_endtime between", value1, value2, "serverEndtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andServerEndtimeNotBetween(String value1, String value2) {
+            addCriterion("server_endtime not between", value1, value2, "serverEndtime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

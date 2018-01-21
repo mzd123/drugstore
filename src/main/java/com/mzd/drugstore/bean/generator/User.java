@@ -1,403 +1,93 @@
 package com.mzd.drugstore.bean.generator;
 
 public class User {
-    private String host;
+    private String userId;
 
-    private String user;
+    private String userName;
 
-    private String password;
+    private String userPassword;
 
-    private String selectPriv;
+    private String userTel;
 
-    private String insertPriv;
+    private String userEmail;
 
-    private String updatePriv;
+    private String userCreatetime;
 
-    private String deletePriv;
+    private String userStatus;
 
-    private String createPriv;
+    private String userMoney;
 
-    private String dropPriv;
+    private String userRoleid;
 
-    private String reloadPriv;
-
-    private String shutdownPriv;
-
-    private String processPriv;
-
-    private String filePriv;
-
-    private String grantPriv;
-
-    private String referencesPriv;
-
-    private String indexPriv;
-
-    private String alterPriv;
-
-    private String showDbPriv;
-
-    private String superPriv;
-
-    private String createTmpTablePriv;
-
-    private String lockTablesPriv;
-
-    private String executePriv;
-
-    private String replSlavePriv;
-
-    private String replClientPriv;
-
-    private String createViewPriv;
-
-    private String showViewPriv;
-
-    private String createRoutinePriv;
-
-    private String alterRoutinePriv;
-
-    private String createUserPriv;
-
-    private String eventPriv;
-
-    private String triggerPriv;
-
-    private String createTablespacePriv;
-
-    private String sslType;
-
-    private Integer maxQuestions;
-
-    private Integer maxUpdates;
-
-    private Integer maxConnections;
-
-    private Integer maxUserConnections;
-
-    private String plugin;
-
-    private String passwordExpired;
-
-    private String isRole;
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host == null ? null : host.trim();
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user == null ? null : user.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getSelectPriv() {
-        return selectPriv;
-    }
-
-    public void setSelectPriv(String selectPriv) {
-        this.selectPriv = selectPriv == null ? null : selectPriv.trim();
-    }
-
-    public String getInsertPriv() {
-        return insertPriv;
-    }
-
-    public void setInsertPriv(String insertPriv) {
-        this.insertPriv = insertPriv == null ? null : insertPriv.trim();
-    }
-
-    public String getUpdatePriv() {
-        return updatePriv;
-    }
-
-    public void setUpdatePriv(String updatePriv) {
-        this.updatePriv = updatePriv == null ? null : updatePriv.trim();
-    }
-
-    public String getDeletePriv() {
-        return deletePriv;
-    }
-
-    public void setDeletePriv(String deletePriv) {
-        this.deletePriv = deletePriv == null ? null : deletePriv.trim();
-    }
-
-    public String getCreatePriv() {
-        return createPriv;
-    }
-
-    public void setCreatePriv(String createPriv) {
-        this.createPriv = createPriv == null ? null : createPriv.trim();
-    }
-
-    public String getDropPriv() {
-        return dropPriv;
-    }
-
-    public void setDropPriv(String dropPriv) {
-        this.dropPriv = dropPriv == null ? null : dropPriv.trim();
-    }
-
-    public String getReloadPriv() {
-        return reloadPriv;
-    }
-
-    public void setReloadPriv(String reloadPriv) {
-        this.reloadPriv = reloadPriv == null ? null : reloadPriv.trim();
-    }
-
-    public String getShutdownPriv() {
-        return shutdownPriv;
-    }
-
-    public void setShutdownPriv(String shutdownPriv) {
-        this.shutdownPriv = shutdownPriv == null ? null : shutdownPriv.trim();
-    }
-
-    public String getProcessPriv() {
-        return processPriv;
-    }
-
-    public void setProcessPriv(String processPriv) {
-        this.processPriv = processPriv == null ? null : processPriv.trim();
-    }
-
-    public String getFilePriv() {
-        return filePriv;
-    }
-
-    public void setFilePriv(String filePriv) {
-        this.filePriv = filePriv == null ? null : filePriv.trim();
-    }
-
-    public String getGrantPriv() {
-        return grantPriv;
-    }
-
-    public void setGrantPriv(String grantPriv) {
-        this.grantPriv = grantPriv == null ? null : grantPriv.trim();
-    }
-
-    public String getReferencesPriv() {
-        return referencesPriv;
-    }
-
-    public void setReferencesPriv(String referencesPriv) {
-        this.referencesPriv = referencesPriv == null ? null : referencesPriv.trim();
-    }
-
-    public String getIndexPriv() {
-        return indexPriv;
-    }
-
-    public void setIndexPriv(String indexPriv) {
-        this.indexPriv = indexPriv == null ? null : indexPriv.trim();
-    }
-
-    public String getAlterPriv() {
-        return alterPriv;
-    }
-
-    public void setAlterPriv(String alterPriv) {
-        this.alterPriv = alterPriv == null ? null : alterPriv.trim();
-    }
-
-    public String getShowDbPriv() {
-        return showDbPriv;
-    }
-
-    public void setShowDbPriv(String showDbPriv) {
-        this.showDbPriv = showDbPriv == null ? null : showDbPriv.trim();
-    }
-
-    public String getSuperPriv() {
-        return superPriv;
-    }
-
-    public void setSuperPriv(String superPriv) {
-        this.superPriv = superPriv == null ? null : superPriv.trim();
-    }
-
-    public String getCreateTmpTablePriv() {
-        return createTmpTablePriv;
-    }
-
-    public void setCreateTmpTablePriv(String createTmpTablePriv) {
-        this.createTmpTablePriv = createTmpTablePriv == null ? null : createTmpTablePriv.trim();
-    }
-
-    public String getLockTablesPriv() {
-        return lockTablesPriv;
-    }
-
-    public void setLockTablesPriv(String lockTablesPriv) {
-        this.lockTablesPriv = lockTablesPriv == null ? null : lockTablesPriv.trim();
-    }
-
-    public String getExecutePriv() {
-        return executePriv;
-    }
-
-    public void setExecutePriv(String executePriv) {
-        this.executePriv = executePriv == null ? null : executePriv.trim();
-    }
-
-    public String getReplSlavePriv() {
-        return replSlavePriv;
-    }
-
-    public void setReplSlavePriv(String replSlavePriv) {
-        this.replSlavePriv = replSlavePriv == null ? null : replSlavePriv.trim();
-    }
-
-    public String getReplClientPriv() {
-        return replClientPriv;
-    }
-
-    public void setReplClientPriv(String replClientPriv) {
-        this.replClientPriv = replClientPriv == null ? null : replClientPriv.trim();
-    }
-
-    public String getCreateViewPriv() {
-        return createViewPriv;
-    }
-
-    public void setCreateViewPriv(String createViewPriv) {
-        this.createViewPriv = createViewPriv == null ? null : createViewPriv.trim();
-    }
-
-    public String getShowViewPriv() {
-        return showViewPriv;
-    }
-
-    public void setShowViewPriv(String showViewPriv) {
-        this.showViewPriv = showViewPriv == null ? null : showViewPriv.trim();
-    }
-
-    public String getCreateRoutinePriv() {
-        return createRoutinePriv;
-    }
-
-    public void setCreateRoutinePriv(String createRoutinePriv) {
-        this.createRoutinePriv = createRoutinePriv == null ? null : createRoutinePriv.trim();
-    }
-
-    public String getAlterRoutinePriv() {
-        return alterRoutinePriv;
-    }
-
-    public void setAlterRoutinePriv(String alterRoutinePriv) {
-        this.alterRoutinePriv = alterRoutinePriv == null ? null : alterRoutinePriv.trim();
-    }
-
-    public String getCreateUserPriv() {
-        return createUserPriv;
-    }
-
-    public void setCreateUserPriv(String createUserPriv) {
-        this.createUserPriv = createUserPriv == null ? null : createUserPriv.trim();
-    }
-
-    public String getEventPriv() {
-        return eventPriv;
-    }
-
-    public void setEventPriv(String eventPriv) {
-        this.eventPriv = eventPriv == null ? null : eventPriv.trim();
-    }
-
-    public String getTriggerPriv() {
-        return triggerPriv;
-    }
-
-    public void setTriggerPriv(String triggerPriv) {
-        this.triggerPriv = triggerPriv == null ? null : triggerPriv.trim();
-    }
-
-    public String getCreateTablespacePriv() {
-        return createTablespacePriv;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCreateTablespacePriv(String createTablespacePriv) {
-        this.createTablespacePriv = createTablespacePriv == null ? null : createTablespacePriv.trim();
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getSslType() {
-        return sslType;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setSslType(String sslType) {
-        this.sslType = sslType == null ? null : sslType.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public Integer getMaxQuestions() {
-        return maxQuestions;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setMaxQuestions(Integer maxQuestions) {
-        this.maxQuestions = maxQuestions;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword == null ? null : userPassword.trim();
     }
 
-    public Integer getMaxUpdates() {
-        return maxUpdates;
+    public String getUserTel() {
+        return userTel;
     }
 
-    public void setMaxUpdates(Integer maxUpdates) {
-        this.maxUpdates = maxUpdates;
+    public void setUserTel(String userTel) {
+        this.userTel = userTel == null ? null : userTel.trim();
     }
 
-    public Integer getMaxConnections() {
-        return maxConnections;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setMaxConnections(Integer maxConnections) {
-        this.maxConnections = maxConnections;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public Integer getMaxUserConnections() {
-        return maxUserConnections;
+    public String getUserCreatetime() {
+        return userCreatetime;
     }
 
-    public void setMaxUserConnections(Integer maxUserConnections) {
-        this.maxUserConnections = maxUserConnections;
+    public void setUserCreatetime(String userCreatetime) {
+        this.userCreatetime = userCreatetime == null ? null : userCreatetime.trim();
     }
 
-    public String getPlugin() {
-        return plugin;
+    public String getUserStatus() {
+        return userStatus;
     }
 
-    public void setPlugin(String plugin) {
-        this.plugin = plugin == null ? null : plugin.trim();
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus == null ? null : userStatus.trim();
     }
 
-    public String getPasswordExpired() {
-        return passwordExpired;
+    public String getUserMoney() {
+        return userMoney;
     }
 
-    public void setPasswordExpired(String passwordExpired) {
-        this.passwordExpired = passwordExpired == null ? null : passwordExpired.trim();
+    public void setUserMoney(String userMoney) {
+        this.userMoney = userMoney == null ? null : userMoney.trim();
     }
 
-    public String getIsRole() {
-        return isRole;
+    public String getUserRoleid() {
+        return userRoleid;
     }
 
-    public void setIsRole(String isRole) {
-        this.isRole = isRole == null ? null : isRole.trim();
+    public void setUserRoleid(String userRoleid) {
+        this.userRoleid = userRoleid == null ? null : userRoleid.trim();
     }
 }

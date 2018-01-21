@@ -72,7 +72,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from productclass
+    from cs_productclass
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,17 +81,17 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.ProductclassExample">
-    delete from productclass
+    delete from cs_productclass
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Productclass">
-    insert into productclass (productclass_id, productclass_name)
+    insert into cs_productclass (productclass_id, productclass_name)
     values (#{productclassId,jdbcType=VARCHAR}, #{productclassName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Productclass">
-    insert into productclass
+    insert into cs_productclass
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="productclassId != null">
         productclass_id,
@@ -110,13 +110,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.ProductclassExample" resultType="java.lang.Long">
-    select count(*) from productclass
+    select count(*) from cs_productclass
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update productclass
+    update cs_productclass
     <set>
       <if test="record.productclassId != null">
         productclass_id = #{record.productclassId,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update productclass
+    update cs_productclass
     set productclass_id = #{record.productclassId,jdbcType=VARCHAR},
       productclass_name = #{record.productclassName,jdbcType=VARCHAR}
     <if test="_parameter != null">

@@ -33,18 +33,19 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table tableName="address" domainObjectName="Address"/>
-        <table tableName="afterserver" domainObjectName="Afterserver"/>
-        <table tableName="car" domainObjectName="Car"/>
-        <table tableName="productclass" domainObjectName="Productclass"/>
-        <table tableName="comment" domainObjectName="Comment"/>
-        <table tableName="items" domainObjectName="Items"/>
-        <table tableName="order" domainObjectName="Order"/>
-        <table tableName="product" domainObjectName="Product"/>
-        <table tableName="role" domainObjectName="Role"/>
-        <table tableName="server" domainObjectName="Server"/>
-        <table tableName="storemessage" domainObjectName="Storemessage"/>
-        <table tableName="user" domainObjectName="User"/>
+        <table tableName="cs_authority" domainObjectName="Authority"/>
+        <table tableName="cs_role" domainObjectName="Role"/>
+        <table tableName="cs_user" domainObjectName="User"/>
+        <table tableName="cs_address" domainObjectName="Address"/>
+        <table tableName="cs_order" domainObjectName="Order"/>
+        <table tableName="cs_productclass" domainObjectName="Productclass"/>
+        <table tableName="cs_product" domainObjectName="Product"/>
+        <table tableName="cs_comment" domainObjectName="Comment"/>
+        <table tableName="cs_car" domainObjectName="Car"/>
+        <table tableName="cs_items" domainObjectName="Items"/>
+        <table tableName="cs_afterserver" domainObjectName="Afterserver"/>
+        <table tableName="cs_server" domainObjectName="Server"/>
+        <table tableName="cs_storemessage" domainObjectName="Storemessage"/>
 
 
     </context>

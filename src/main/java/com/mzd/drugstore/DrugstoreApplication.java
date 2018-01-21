@@ -1,5 +1,6 @@
 package com.mzd.drugstore;
 
+import com.mzd.drugstore.filter.MyInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -48,4 +49,8 @@ public class DrugstoreApplication {
         redisTemplate.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF8")));
         return redisTemplate;
     }
+
+
+
+
 }

@@ -384,116 +384,6 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria and
-commentContentIsNull() {
-            addCriterion("
-comment_content is null");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentIsNotNull() {
-            addCriterion("
-comment_content is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentEqualTo(String value) {
-            addCriterion("
-comment_content =", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentNotEqualTo(String value) {
-            addCriterion("
-comment_content <>", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentGreaterThan(String value) {
-            addCriterion("
-comment_content >", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentGreaterThanOrEqualTo(String value) {
-            addCriterion("
-comment_content >=", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentLessThan(String value) {
-            addCriterion("
-comment_content <", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentLessThanOrEqualTo(String value) {
-            addCriterion("
-comment_content <=", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentLike(String value) {
-            addCriterion("
-comment_content like", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentNotLike(String value) {
-            addCriterion("
-comment_content not like", value, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentIn(List<String> values) {
-            addCriterion("
-comment_content in", values, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentNotIn(List<String> values) {
-            addCriterion("
-comment_content not in", values, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentBetween(String value1, String value2) {
-            addCriterion("
-comment_content between", value1, value2, "
-commentContent");
-            return (Criteria) this;
-        }
-
-        public Criteria and
-commentContentNotBetween(String value1, String value2) {
-            addCriterion("
-comment_content not between", value1, value2, "
-commentContent");
-            return (Criteria) this;
-        }
-
         public Criteria andCommentStatusIsNull() {
             addCriterion("comment_status is null");
             return (Criteria) this;
@@ -631,6 +521,76 @@ commentContent");
 
         public Criteria andCommentImgNotBetween(String value1, String value2) {
             addCriterion("comment_img not between", value1, value2, "commentImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentIsNull() {
+            addCriterion("comment_content is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentIsNotNull() {
+            addCriterion("comment_content is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentEqualTo(String value) {
+            addCriterion("comment_content =", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentNotEqualTo(String value) {
+            addCriterion("comment_content <>", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentGreaterThan(String value) {
+            addCriterion("comment_content >", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentGreaterThanOrEqualTo(String value) {
+            addCriterion("comment_content >=", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentLessThan(String value) {
+            addCriterion("comment_content <", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentLessThanOrEqualTo(String value) {
+            addCriterion("comment_content <=", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentLike(String value) {
+            addCriterion("comment_content like", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentNotLike(String value) {
+            addCriterion("comment_content not like", value, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentIn(List<String> values) {
+            addCriterion("comment_content in", values, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentNotIn(List<String> values) {
+            addCriterion("comment_content not in", values, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentBetween(String value1, String value2) {
+            addCriterion("comment_content between", value1, value2, "commentContent");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentContentNotBetween(String value1, String value2) {
+            addCriterion("comment_content not between", value1, value2, "commentContent");
             return (Criteria) this;
         }
     }

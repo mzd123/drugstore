@@ -77,7 +77,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from items
+    from cs_items
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,13 +86,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample">
-    delete from items
+    delete from cs_items
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Items">
-    insert into items (items_id, product_id, order_id, 
+    insert into cs_items (items_id, product_id, order_id, 
       product_number, car_id, items_money, 
       items_status)
     values (#{itemsId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
@@ -100,7 +100,7 @@
       #{itemsStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Items">
-    insert into items
+    insert into cs_items
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="itemsId != null">
         items_id,
@@ -149,13 +149,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample" resultType="java.lang.Long">
-    select count(*) from items
+    select count(*) from cs_items
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update items
+    update cs_items
     <set>
       <if test="record.itemsId != null">
         items_id = #{record.itemsId,jdbcType=VARCHAR},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update items
+    update cs_items
     set items_id = #{record.itemsId,jdbcType=VARCHAR},
       product_id = #{record.productId,jdbcType=VARCHAR},
       order_id = #{record.orderId,jdbcType=VARCHAR},

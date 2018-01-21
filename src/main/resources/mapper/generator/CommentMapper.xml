@@ -6,11 +6,9 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="comment_createtime" jdbcType="VARCHAR" property="commentCreatetime" />
-    <result column="
-comment_content" jdbcType="VARCHAR" property="
-commentContent" />
     <result column="comment_status" jdbcType="VARCHAR" property="commentStatus" />
     <result column="comment_img" jdbcType="VARCHAR" property="commentImg" />
+    <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,9 +69,8 @@ commentContent" />
     </where>
   </sql>
   <sql id="Base_Column_List">
-    comment_id, user_id, product_id, comment_createtime, 
-comment_content, comment_status, 
-    comment_img
+    comment_id, user_id, product_id, comment_createtime, comment_status, comment_img, 
+    comment_content
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample" resultMap="BaseResultMap">
     select
@@ -81,7 +78,7 @@ comment_content, comment_status,
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from comment
+    from cs_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,23 +87,21 @@ comment_content, comment_status,
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample">
-    delete from comment
+    delete from cs_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Comment">
-    insert into comment (comment_id, user_id, product_id, 
-      comment_createtime, 
-comment_content, comment_status, 
-      comment_img)
+    insert into cs_comment (comment_id, user_id, product_id, 
+      comment_createtime, comment_status, comment_img, 
+      comment_content)
     values (#{commentId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
-      #{commentCreatetime,jdbcType=VARCHAR}, #{
-commentContent,jdbcType=VARCHAR}, #{commentStatus,jdbcType=VARCHAR}, 
-      #{commentImg,jdbcType=VARCHAR})
+      #{commentCreatetime,jdbcType=VARCHAR}, #{commentStatus,jdbcType=VARCHAR}, #{commentImg,jdbcType=VARCHAR}, 
+      #{commentContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Comment">
-    insert into comment
+    insert into cs_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commentId != null">
         comment_id,
@@ -120,16 +115,14 @@ commentContent,jdbcType=VARCHAR}, #{commentStatus,jdbcType=VARCHAR},
       <if test="commentCreatetime != null">
         comment_createtime,
       </if>
-      <if test="
-commentContent != null">
-        
-comment_content,
-      </if>
       <if test="commentStatus != null">
         comment_status,
       </if>
       <if test="commentImg != null">
         comment_img,
+      </if>
+      <if test="commentContent != null">
+        comment_content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -145,27 +138,25 @@ comment_content,
       <if test="commentCreatetime != null">
         #{commentCreatetime,jdbcType=VARCHAR},
       </if>
-      <if test="
-commentContent != null">
-        #{
-commentContent,jdbcType=VARCHAR},
-      </if>
       <if test="commentStatus != null">
         #{commentStatus,jdbcType=VARCHAR},
       </if>
       <if test="commentImg != null">
         #{commentImg,jdbcType=VARCHAR},
       </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.CommentExample" resultType="java.lang.Long">
-    select count(*) from comment
+    select count(*) from cs_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update comment
+    update cs_comment
     <set>
       <if test="record.commentId != null">
         comment_id = #{record.commentId,jdbcType=VARCHAR},
@@ -179,17 +170,14 @@ commentContent,jdbcType=VARCHAR},
       <if test="record.commentCreatetime != null">
         comment_createtime = #{record.commentCreatetime,jdbcType=VARCHAR},
       </if>
-      <if test="record.
-commentContent != null">
-        
-comment_content = #{record.
-commentContent,jdbcType=VARCHAR},
-      </if>
       <if test="record.commentStatus != null">
         comment_status = #{record.commentStatus,jdbcType=VARCHAR},
       </if>
       <if test="record.commentImg != null">
         comment_img = #{record.commentImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentContent != null">
+        comment_content = #{record.commentContent,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -197,16 +185,14 @@ commentContent,jdbcType=VARCHAR},
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update comment
+    update cs_comment
     set comment_id = #{record.commentId,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR},
       product_id = #{record.productId,jdbcType=VARCHAR},
       comment_createtime = #{record.commentCreatetime,jdbcType=VARCHAR},
-      
-comment_content = #{record.
-commentContent,jdbcType=VARCHAR},
       comment_status = #{record.commentStatus,jdbcType=VARCHAR},
-      comment_img = #{record.commentImg,jdbcType=VARCHAR}
+      comment_img = #{record.commentImg,jdbcType=VARCHAR},
+      comment_content = #{record.commentContent,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

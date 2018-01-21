@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order
+    from cs_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,13 +88,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample">
-    delete from order
+    delete from cs_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Order">
-    insert into order (order_id, order_summoney, order_stage, 
+    insert into cs_order (order_id, order_summoney, order_stage, 
       order_createtime, order_origin, user_id, 
       address_id, order_status)
     values (#{orderId,jdbcType=VARCHAR}, #{orderSummoney,jdbcType=VARCHAR}, #{orderStage,jdbcType=VARCHAR}, 
@@ -102,7 +102,7 @@
       #{addressId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Order">
-    insert into order
+    insert into cs_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
         order_id,
@@ -157,13 +157,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from cs_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update cs_order
     <set>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update cs_order
     set order_id = #{record.orderId,jdbcType=VARCHAR},
       order_summoney = #{record.orderSummoney,jdbcType=VARCHAR},
       order_stage = #{record.orderStage,jdbcType=VARCHAR},

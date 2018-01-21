@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Role">
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="authority_id" jdbcType="VARCHAR" property="authorityId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    role_id, role_name
+    role_id, role_name, authority_id
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.RoleExample" resultMap="BaseResultMap">
     select
@@ -72,7 +73,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from role
+    from cs_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,23 +82,28 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.RoleExample">
-    delete from role
+    delete from cs_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Role">
-    insert into role (role_id, role_name)
-    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR})
+    insert into cs_role (role_id, role_name, authority_id
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{authorityId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Role">
-    insert into role
+    insert into cs_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
         role_id,
       </if>
       <if test="roleName != null">
         role_name,
+      </if>
+      <if test="authorityId != null">
+        authority_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -107,16 +113,19 @@
       <if test="roleName != null">
         #{roleName,jdbcType=VARCHAR},
       </if>
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.RoleExample" resultType="java.lang.Long">
-    select count(*) from role
+    select count(*) from cs_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update role
+    update cs_role
     <set>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=VARCHAR},
@@ -124,15 +133,19 @@
       <if test="record.roleName != null">
         role_name = #{record.roleName,jdbcType=VARCHAR},
       </if>
+      <if test="record.authorityId != null">
+        authority_id = #{record.authorityId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update role
+    update cs_role
     set role_id = #{record.roleId,jdbcType=VARCHAR},
-      role_name = #{record.roleName,jdbcType=VARCHAR}
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      authority_id = #{record.authorityId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

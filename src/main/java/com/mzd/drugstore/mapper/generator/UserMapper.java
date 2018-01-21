@@ -2,7 +2,6 @@ package com.mzd.drugstore.mapper.generator;
 
 import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.bean.generator.UserExample;
-import com.mzd.drugstore.bean.generator.UserWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,17 +10,13 @@ public interface UserMapper {
 
     int deleteByExample(UserExample example);
 
-    int insert(UserWithBLOBs record);
+    int insert(User record);
 
-    int insertSelective(UserWithBLOBs record);
-
-    List<UserWithBLOBs> selectByExampleWithBLOBs(UserExample example);
+    int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
 
-    int updateByExampleSelective(@Param("record") UserWithBLOBs record, @Param("example") UserExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") UserWithBLOBs record, @Param("example") UserExample example);
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 }

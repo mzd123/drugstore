@@ -5,6 +5,8 @@ public class Role {
 
     private String roleName;
 
+    private String authorityId;
+
     public String getRoleId() {
         return roleId;
     }
@@ -19,5 +21,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    public String getAuthorityId() {
+        return authorityId;
+    }
+
+    public void setAuthorityId(String authorityId) {
+        this.authorityId = authorityId == null ? null : authorityId.trim();
     }
 }

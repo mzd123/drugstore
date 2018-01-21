@@ -72,7 +72,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from car
+    from cs_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,17 +81,17 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.CarExample">
-    delete from car
+    delete from cs_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Car">
-    insert into car (car_id, car_userid)
+    insert into cs_car (car_id, car_userid)
     values (#{carId,jdbcType=VARCHAR}, #{carUserid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Car">
-    insert into car
+    insert into cs_car
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="carId != null">
         car_id,
@@ -110,13 +110,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.CarExample" resultType="java.lang.Long">
-    select count(*) from car
+    select count(*) from cs_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update car
+    update cs_car
     <set>
       <if test="record.carId != null">
         car_id = #{record.carId,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update car
+    update cs_car
     set car_id = #{record.carId,jdbcType=VARCHAR},
       car_userid = #{record.carUserid,jdbcType=VARCHAR}
     <if test="_parameter != null">

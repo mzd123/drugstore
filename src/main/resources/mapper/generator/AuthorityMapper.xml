@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mzd.drugstore.mapper.generator.AddressMapper">
-  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Address">
-    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
-    <result column="address_location" jdbcType="VARCHAR" property="addressLocation" />
-    <result column="address_createtime" jdbcType="VARCHAR" property="addressCreatetime" />
-    <result column="address_status" jdbcType="VARCHAR" property="addressStatus" />
-    <result column="userid" jdbcType="VARCHAR" property="userid" />
+<mapper namespace="com.mzd.drugstore.mapper.generator.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Authority">
+    <result column="authority_id" jdbcType="VARCHAR" property="authorityId" />
+    <result column="authority_name" jdbcType="VARCHAR" property="authorityName" />
+    <result column="authority_uri" jdbcType="VARCHAR" property="authorityUri" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    address_id, address_location, address_createtime, address_status, userid
+    authority_id, authority_name, authority_uri
   </sql>
-  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.AuthorityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from cs_address
+    from cs_authority
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,78 +81,60 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample">
-    delete from cs_address
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.AuthorityExample">
+    delete from cs_authority
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Address">
-    insert into cs_address (address_id, address_location, address_createtime, 
-      address_status, userid)
-    values (#{addressId,jdbcType=VARCHAR}, #{addressLocation,jdbcType=VARCHAR}, #{addressCreatetime,jdbcType=VARCHAR}, 
-      #{addressStatus,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Authority">
+    insert into cs_authority (authority_id, authority_name, authority_uri
+      )
+    values (#{authorityId,jdbcType=VARCHAR}, #{authorityName,jdbcType=VARCHAR}, #{authorityUri,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Address">
-    insert into cs_address
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Authority">
+    insert into cs_authority
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="addressId != null">
-        address_id,
+      <if test="authorityId != null">
+        authority_id,
       </if>
-      <if test="addressLocation != null">
-        address_location,
+      <if test="authorityName != null">
+        authority_name,
       </if>
-      <if test="addressCreatetime != null">
-        address_createtime,
-      </if>
-      <if test="addressStatus != null">
-        address_status,
-      </if>
-      <if test="userid != null">
-        userid,
+      <if test="authorityUri != null">
+        authority_uri,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="addressId != null">
-        #{addressId,jdbcType=VARCHAR},
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=VARCHAR},
       </if>
-      <if test="addressLocation != null">
-        #{addressLocation,jdbcType=VARCHAR},
+      <if test="authorityName != null">
+        #{authorityName,jdbcType=VARCHAR},
       </if>
-      <if test="addressCreatetime != null">
-        #{addressCreatetime,jdbcType=VARCHAR},
-      </if>
-      <if test="addressStatus != null">
-        #{addressStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
+      <if test="authorityUri != null">
+        #{authorityUri,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.AddressExample" resultType="java.lang.Long">
-    select count(*) from cs_address
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.AuthorityExample" resultType="java.lang.Long">
+    select count(*) from cs_authority
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cs_address
+    update cs_authority
     <set>
-      <if test="record.addressId != null">
-        address_id = #{record.addressId,jdbcType=VARCHAR},
+      <if test="record.authorityId != null">
+        authority_id = #{record.authorityId,jdbcType=VARCHAR},
       </if>
-      <if test="record.addressLocation != null">
-        address_location = #{record.addressLocation,jdbcType=VARCHAR},
+      <if test="record.authorityName != null">
+        authority_name = #{record.authorityName,jdbcType=VARCHAR},
       </if>
-      <if test="record.addressCreatetime != null">
-        address_createtime = #{record.addressCreatetime,jdbcType=VARCHAR},
-      </if>
-      <if test="record.addressStatus != null">
-        address_status = #{record.addressStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userid != null">
-        userid = #{record.userid,jdbcType=VARCHAR},
+      <if test="record.authorityUri != null">
+        authority_uri = #{record.authorityUri,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,12 +142,10 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cs_address
-    set address_id = #{record.addressId,jdbcType=VARCHAR},
-      address_location = #{record.addressLocation,jdbcType=VARCHAR},
-      address_createtime = #{record.addressCreatetime,jdbcType=VARCHAR},
-      address_status = #{record.addressStatus,jdbcType=VARCHAR},
-      userid = #{record.userid,jdbcType=VARCHAR}
+    update cs_authority
+    set authority_id = #{record.authorityId,jdbcType=VARCHAR},
+      authority_name = #{record.authorityName,jdbcType=VARCHAR},
+      authority_uri = #{record.authorityUri,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

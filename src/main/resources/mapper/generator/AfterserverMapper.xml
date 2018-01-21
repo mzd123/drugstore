@@ -79,7 +79,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from afterserver
+    from cs_afterserver
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,13 +88,13 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample">
-    delete from afterserver
+    delete from cs_afterserver
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
-    insert into afterserver (afterserver_id, afterserver_class, 
+    insert into cs_afterserver (afterserver_id, afterserver_class, 
       user_id, order_id, afterserver_createtime, 
       afterserver_stage, afterserver_img, afterserver_classes
       )
@@ -104,7 +104,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
-    insert into afterserver
+    insert into cs_afterserver
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="afterserverId != null">
         afterserver_id,
@@ -159,13 +159,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample" resultType="java.lang.Long">
-    select count(*) from afterserver
+    select count(*) from cs_afterserver
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update afterserver
+    update cs_afterserver
     <set>
       <if test="record.afterserverId != null">
         afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
@@ -197,7 +197,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update afterserver
+    update cs_afterserver
     set afterserver_id = #{record.afterserverId,jdbcType=VARCHAR},
       afterserver_class = #{record.afterserverClass,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR},

@@ -9,6 +9,12 @@ public class Server {
 
     private String afterserverId;
 
+    private String serverUserid;
+
+    private String serverStarttime;
+
+    private String serverEndtime;
+
     public String getServerId() {
         return serverId;
     }
@@ -39,5 +45,29 @@ public class Server {
 
     public void setAfterserverId(String afterserverId) {
         this.afterserverId = afterserverId == null ? null : afterserverId.trim();
+    }
+
+    public String getServerUserid() {
+        return serverUserid;
+    }
+
+    public void setServerUserid(String serverUserid) {
+        this.serverUserid = serverUserid == null ? null : serverUserid.trim();
+    }
+
+    public String getServerStarttime() {
+        return serverStarttime;
+    }
+
+    public void setServerStarttime(String serverStarttime) {
+        this.serverStarttime = serverStarttime == null ? null : serverStarttime.trim();
+    }
+
+    public String getServerEndtime() {
+        return serverEndtime;
+    }
+
+    public void setServerEndtime(String serverEndtime) {
+        this.serverEndtime = serverEndtime == null ? null : serverEndtime.trim();
     }
 }
