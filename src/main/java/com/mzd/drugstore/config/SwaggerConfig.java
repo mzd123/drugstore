@@ -21,7 +21,6 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo()).select().paths(postPaths()).build();
     }
 
-    //过滤路径，只有路径中符合/drugstore/.*的congtoller才会产生swagger
     private Predicate<String> postPaths() {
         return or(regex("/drugstore/.*"), regex("/drugstore/.*"));
     }

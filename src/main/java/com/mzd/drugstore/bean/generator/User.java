@@ -15,8 +15,6 @@ public class User {
 
     private String userStatus;
 
-    private String userMoney;
-
     private String userRoleid;
 
     public String getUserId() {
@@ -73,14 +71,6 @@ public class User {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus == null ? null : userStatus.trim();
-    }
-
-    public String getUserMoney() {
-        return userMoney;
-    }
-
-    public void setUserMoney(String userMoney) {
-        this.userMoney = userMoney == null ? null : userMoney.trim();
     }
 
     public String getUserRoleid() {

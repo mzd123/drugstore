@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.generator.MyLogMapper">
+  <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.MyLog">
+    <result column="log_id" jdbcType="VARCHAR" property="logId" />
+    <result column="use_id" jdbcType="VARCHAR" property="useId" />
+    <result column="optionconent" jdbcType="VARCHAR" property="optionconent" />
+    <result column="tablename" jdbcType="VARCHAR" property="tablename" />
+    <result column="table_id" jdbcType="VARCHAR" property="tableId" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    log_id, use_id, optionconent, tablename, table_id, createtime
+  </sql>
+  <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.MyLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cs_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mzd.drugstore.bean.generator.MyLogExample">
+    delete from cs_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.MyLog">
+    insert into cs_log (log_id, use_id, optionconent, 
+      tablename, table_id, createtime
+      )
+    values (#{logId,jdbcType=VARCHAR}, #{useId,jdbcType=VARCHAR}, #{optionconent,jdbcType=VARCHAR}, 
+      #{tablename,jdbcType=VARCHAR}, #{tableId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.MyLog">
+    insert into cs_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="useId != null">
+        use_id,
+      </if>
+      <if test="optionconent != null">
+        optionconent,
+      </if>
+      <if test="tablename != null">
+        tablename,
+      </if>
+      <if test="tableId != null">
+        table_id,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="useId != null">
+        #{useId,jdbcType=VARCHAR},
+      </if>
+      <if test="optionconent != null">
+        #{optionconent,jdbcType=VARCHAR},
+      </if>
+      <if test="tablename != null">
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="tableId != null">
+        #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mzd.drugstore.bean.generator.MyLogExample" resultType="java.lang.Long">
+    select count(*) from cs_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cs_log
+    <set>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useId != null">
+        use_id = #{record.useId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionconent != null">
+        optionconent = #{record.optionconent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tablename != null">
+        tablename = #{record.tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tableId != null">
+        table_id = #{record.tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cs_log
+    set log_id = #{record.logId,jdbcType=VARCHAR},
+      use_id = #{record.useId,jdbcType=VARCHAR},
+      optionconent = #{record.optionconent,jdbcType=VARCHAR},
+      tablename = #{record.tablename,jdbcType=VARCHAR},
+      table_id = #{record.tableId,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

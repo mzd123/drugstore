@@ -1,5 +1,7 @@
 package com.mzd.drugstore.utils;
 
+import java.util.UUID;
+
 public class MyStringUtils {
     /**
      * 防止toString()出现空指针
@@ -12,6 +14,12 @@ public class MyStringUtils {
         if (o != null) {
             s = o.toString();
         }
+        return s;
+    }
+
+    public static String getuuid() {
+        UUID u = UUID.randomUUID();
+        String s = u.toString().replaceAll("-", "");
         return s;
     }
 }

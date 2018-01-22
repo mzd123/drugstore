@@ -46,7 +46,7 @@
         <table tableName="cs_afterserver" domainObjectName="Afterserver"/>
         <table tableName="cs_server" domainObjectName="Server"/>
         <table tableName="cs_storemessage" domainObjectName="Storemessage"/>
-
+        <table tableName="cs_log" domainObjectName="MyLog"/>
 
     </context>
 

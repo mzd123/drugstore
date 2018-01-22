@@ -1,5 +1,6 @@
 package com.mzd.drugstore.filter;
 
+import com.mzd.drugstore.constant.Constant;
 import com.mzd.drugstore.utils.MyStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,7 +16,7 @@ import java.util.List;
 public class MyInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-
+    private final String api = Constant.drugstore + Constant.authority;
 
     /**
      * 在请求处理之前进行调用（Controller方法调用之前
@@ -28,10 +29,13 @@ public class MyInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
+        /**
+         * /drugstore/register.do
+         * 无论有没有参数都是这个
+         */
         String uri = request.getRequestURI();
-        System.out.println(uri);
-        //如果是登入或者注册或者是找回密码的请求不进行拦截
-        if (uri.endsWith("login.do") || uri.endsWith("register.do") || uri.endsWith("findpassword.do")) {
+        //如果是登入或者注册或者是找回密码等请求不进行拦截
+        if (!uri.contains(api)) {
             return true;
         } else {
             String sessionid = MyStringUtils.Object2String(request.getSession().getId());
@@ -47,10 +51,9 @@ public class MyInterceptor implements HandlerInterceptor {
             } else {
                 //还没登入过
                 request.getSession().setAttribute("msg", "你还没登入过，请先登入");
-                response.sendRedirect("/index.jsp");
             }
         }
-        response.sendRedirect("/index.jsp");
+        response.sendRedirect("/login.jsp");
         return false;
     }
 

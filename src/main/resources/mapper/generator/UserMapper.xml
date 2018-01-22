@@ -9,7 +9,6 @@
     <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
     <result column="user_createtime" jdbcType="VARCHAR" property="userCreatetime" />
     <result column="user_status" jdbcType="VARCHAR" property="userStatus" />
-    <result column="user_money" jdbcType="VARCHAR" property="userMoney" />
     <result column="user_roleid" jdbcType="VARCHAR" property="userRoleid" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +71,7 @@
   </sql>
   <sql id="Base_Column_List">
     user_id, user_name, user_password, user_tel, user_email, user_createtime, user_status, 
-    user_money, user_roleid
+    user_roleid
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.UserExample" resultMap="BaseResultMap">
     select
@@ -97,12 +96,10 @@
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.User">
     insert into cs_user (user_id, user_name, user_password, 
       user_tel, user_email, user_createtime, 
-      user_status, user_money, user_roleid
-      )
+      user_status, user_roleid)
     values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userTel,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userCreatetime,jdbcType=VARCHAR}, 
-      #{userStatus,jdbcType=VARCHAR}, #{userMoney,jdbcType=VARCHAR}, #{userRoleid,jdbcType=VARCHAR}
-      )
+      #{userStatus,jdbcType=VARCHAR}, #{userRoleid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.User">
     insert into cs_user
@@ -127,9 +124,6 @@
       </if>
       <if test="userStatus != null">
         user_status,
-      </if>
-      <if test="userMoney != null">
-        user_money,
       </if>
       <if test="userRoleid != null">
         user_roleid,
@@ -156,9 +150,6 @@
       </if>
       <if test="userStatus != null">
         #{userStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="userMoney != null">
-        #{userMoney,jdbcType=VARCHAR},
       </if>
       <if test="userRoleid != null">
         #{userRoleid,jdbcType=VARCHAR},
@@ -195,9 +186,6 @@
       <if test="record.userStatus != null">
         user_status = #{record.userStatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.userMoney != null">
-        user_money = #{record.userMoney,jdbcType=VARCHAR},
-      </if>
       <if test="record.userRoleid != null">
         user_roleid = #{record.userRoleid,jdbcType=VARCHAR},
       </if>
@@ -215,7 +203,6 @@
       user_email = #{record.userEmail,jdbcType=VARCHAR},
       user_createtime = #{record.userCreatetime,jdbcType=VARCHAR},
       user_status = #{record.userStatus,jdbcType=VARCHAR},
-      user_money = #{record.userMoney,jdbcType=VARCHAR},
       user_roleid = #{record.userRoleid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

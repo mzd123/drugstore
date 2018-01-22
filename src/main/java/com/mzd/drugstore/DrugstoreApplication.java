@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.nio.charset.Charset;
@@ -19,6 +20,8 @@ import java.nio.charset.Charset;
 //扫描监听
 @ServletComponentScan
 @EnableAutoConfiguration
+//支持事务
+@EnableTransactionManagement
 public class DrugstoreApplication {
 
     public static void main(String[] args) {
@@ -49,8 +52,6 @@ public class DrugstoreApplication {
         redisTemplate.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF8")));
         return redisTemplate;
     }
-
-
 
 
 }

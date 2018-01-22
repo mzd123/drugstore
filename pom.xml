@@ -109,7 +109,7 @@
         </dependency>
 
 
-        <!--加上该依赖之后，只要在bean上添加@Data就能自动生成get-set-->
+        <!--加上该依赖之后，只要在bean上添加@Data就能自动生成get-set，但需要下载插件-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
