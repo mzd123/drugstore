@@ -31,12 +31,8 @@ public class TimeUtils {
     public static String formatDateByFormat(Date date, String format) {
         String result = "";
         if (date != null) {
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat(format);
-                result = sdf.format(date);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            result = sdf.format(date);
         }
         return result;
     }
@@ -108,15 +104,10 @@ public class TimeUtils {
      * @param pattern 日期格式
      * @return
      */
-    public static Date parseDate(String strDate, String pattern) {
-        try {
-            SimpleDateFormat format = new SimpleDateFormat(pattern);
-            Date nowDate = format.parse(strDate);
-            return nowDate;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public static Date parseDate(String strDate, String pattern) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        Date nowDate = format.parse(strDate);
+        return nowDate;
     }
 
     /**
@@ -125,7 +116,7 @@ public class TimeUtils {
      * @param date 日期字符串
      * @return
      */
-    public static Date parse_yyyy_MM_dd(String date) {
+    public static Date parse_yyyy_MM_dd(String date) throws Exception {
         return parseDate(date, yyyy_MM_dd);
     }
 
@@ -135,7 +126,7 @@ public class TimeUtils {
      * @param date 日期字符串
      * @return
      */
-    public static Date parse_defaulttime(String date) {
+    public static Date parse_defaulttime(String date) throws Exception {
         return parseDate(date, defaulttime);
     }
 

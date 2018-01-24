@@ -56,4 +56,15 @@ public interface Constant {
     String delete = "删除";
     String login = "登入";
     String logout = "退出";
+    /**
+     * 用户缓存
+     */
+    //用户id
+    String userid = "_userid";
+    //用户信息
+    String userinfo = "_userinfo";
+    //用户能访问的url
+    String user_authoritys_uri = "_authoritys_uri";
+    //用户的验证码
+    String user_verificationcode = "_verificationcode";
 }

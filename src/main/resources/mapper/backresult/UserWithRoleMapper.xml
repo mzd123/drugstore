@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.UserWithRoleMapper">
+    <resultMap id="UserWithRole" type="com.mzd.drugstore.bean.backresult.UserWithRole">
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="user_tel" jdbcType="VARCHAR" property="userTel"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_createtime" jdbcType="VARCHAR" property="userCreatetime"/>
+        <result column="user_status" jdbcType="VARCHAR" property="userStatus"/>
+        <collection property="role" ofType="com.mzd.drugstore.bean.generator.Role">
+            <result column="role_id" jdbcType="VARCHAR" property="roleId"/>
+            <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+            <result column="authority_id" jdbcType="VARCHAR" property="authorityId"/>
+        </collection>
+    </resultMap>
+    <select id="getUserWithRole_username_userpasswordM" resultMap="UserWithRole">
+         SELECT * FROM cs_user u
+                  LEFT JOIN cs_role r
+                             on u.user_roleid=r.role_id
+                  where u.user_name=#{username} and u.user_password=#{password}
+    </select>
+</mapper>

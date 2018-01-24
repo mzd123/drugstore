@@ -6,15 +6,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Md5Utils {
-    public static String getMD5(String str) {
+    public static String getMD5(String str) throws Exception {
         if (StringUtils.isNotEmpty(str)) {
             MessageDigest digest = null;
-            try {
-                digest = MessageDigest.getInstance("Md5");
-            } catch (NoSuchAlgorithmException e) {
-                System.err.println(Md5Utils.class.getName() + "初始化失败");
-                e.printStackTrace();
-            }
+            digest = MessageDigest.getInstance("Md5");
             if (digest != null) {
                 byte[] bytes = str.getBytes();
                 byte[] results = digest.digest(bytes);

@@ -41,7 +41,7 @@ public class MyInterceptor implements HandlerInterceptor {
             String sessionid = MyStringUtils.Object2String(request.getSession().getId());
             if (!sessionid.equals("")) {
                 //获取改用的所有权限点
-                List authoritys = redisTemplate.opsForList().range(sessionid, 0, -1);
+                List authoritys = redisTemplate.opsForList().range(sessionid + Constant.user_authoritys_uri, 0, -1);
                 if (authoritys.size() != 0) {
                     if (authoritys.contains(uri)) {
                         return true;

@@ -10,6 +10,12 @@ public class CommonDao {
     @Autowired
     private MyLogMapper myLogMapper;
 
+    /**
+     * 系统操作日志
+     *
+     * @param log
+     * @return
+     */
     public int insertLogD(MyLog log) {
         return myLogMapper.insert(log);
     }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.GetAuthoritysByidsMapper">
+    <resultMap id="Authority" type="com.mzd.drugstore.bean.generator.Authority">
+        <result column="authority_id" jdbcType="VARCHAR" property="authorityId"/>
+        <result column="authority_name" jdbcType="VARCHAR" property="authorityName"/>
+        <result column="authority_uri" jdbcType="VARCHAR" property="authorityUri"/>
+    </resultMap>
+    <select id="getAuthoritysByidsM" resultMap="Authority">
+        SELECT * FROM cs_authority WHERE authority_id IN
+        <foreach item="authority_id" collection="list" index="index" open="(" separator="," close=")">
+            #{authority_id}
+        </foreach>
+    </select>
+</mapper>
