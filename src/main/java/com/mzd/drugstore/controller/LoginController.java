@@ -326,10 +326,13 @@ public class LoginController {
                 mylog.setLogId(MyStringUtils.getuuid());
                 mylog.setTablename(Constant.cs_user);
                 mylog.setCreatetime(TimeUtils.get_current_time());
-                commonServer.insertLogS(mylog);
+                int i = commonServer.insertLogS(mylog);
                 redisTemplate.opsForValue().set(Constant.userinfo + sessionid, JSONObject.toJSONString(user));
                 request.getSession().setAttribute("user", user);
-                return ResultUtils.getResult("200", "登入成功", user, 0);
+                if (i > 0) {
+                    return ResultUtils.getResult("200", "登入成功", user, 0);
+                }
+                return ResultUtils.getResult("200", "登入成功,但更新日志失败", user, 0);
             }
             return ResultUtils.getResult("400", "账号或密码错误", null, 0);
         } catch (Exception e) {

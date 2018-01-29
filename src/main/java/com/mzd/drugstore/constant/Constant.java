@@ -68,5 +68,10 @@ public interface Constant {
      */
     //验证码5分钟有效
     int verificationcode_time = 60 * 5;
-
+    /**
+     * 商品分类
+     */
+    String productclass = "productclass";
+    //商品分类过期时间---一天
+    int productclass_time = 60 * 60 * 24;
 }

@@ -47,7 +47,7 @@ public class LoginServer {
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
-    public int registerS(User user) {
+    public int registerS(User user) throws Exception {
         int ii = 0;
         int i = loginDao.registerD(user);
         if (i > 0) {
@@ -85,7 +85,7 @@ public class LoginServer {
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
-    public boolean updateuserByuserNameS(User user) {
+    public boolean updateuserByuserNameS(User user) throws Exception {
         int ii = 0;
         int i = loginDao.updateuserByuserNameD(user);
         if (i > 0) {

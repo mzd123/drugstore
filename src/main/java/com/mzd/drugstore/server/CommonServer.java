@@ -9,6 +9,9 @@ import com.mzd.drugstore.dao.CommonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +53,8 @@ public class CommonServer {
      * @param myLog
      * @return
      */
-    public int insertLogS(MyLog myLog) {
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
+    public int insertLogS(MyLog myLog) throws Exception {
         return commonDao.insertLogD(myLog);
     }
 }
