@@ -59,12 +59,14 @@ public interface Constant {
     /**
      * 用户缓存
      */
-    //用户id
-    String userid = "_userid";
     //用户信息
-    String userinfo = "_userinfo";
-    //用户能访问的url
-    String user_authoritys_uri = "_authoritys_uri";
+    String userinfo = "userinfo_";
     //用户的验证码
     String user_verificationcode = "_verificationcode";
+    /**
+     * 缓存时间
+     */
+    //验证码5分钟有效
+    int verificationcode_time = 60 * 5;
+
 }

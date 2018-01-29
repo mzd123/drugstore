@@ -1,6 +1,14 @@
 package com.mzd.drugstore.bean.generator;
 
-public class User {
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+import java.util.Map;
+
+public class User implements HttpSessionBindingListener {
+
+
     private String userId;
 
     private String userName;
@@ -79,5 +87,43 @@ public class User {
 
     public void setUserRoleid(String userRoleid) {
         this.userRoleid = userRoleid == null ? null : userRoleid.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userTel='" + userTel + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userCreatetime='" + userCreatetime + '\'' +
+                ", userStatus='" + userStatus + '\'' +
+                ", userRoleid='" + userRoleid + '\'' +
+                '}';
+    }
+
+    /**
+     * request.getSession().setAttribute("user", user)的时候触发
+     *
+     * @param httpSessionBindingEvent
+     */
+    @Override
+    public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
+        HttpSession session = httpSessionBindingEvent.getSession();
+        Map<String, HttpSession> map = (Map<String, HttpSession>) session.getServletContext().getAttribute("map");
+        map.put(this.userId, session);
+    }
+
+    /**
+     * session被销毁的时候触发
+     *
+     * @param httpSessionBindingEvent
+     */
+    @Override
+    public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
+        HttpSession session = httpSessionBindingEvent.getSession();
+        Map<String, HttpSession> map = (Map<String, HttpSession>) session.getServletContext().getAttribute("map");
+        map.remove(this.userId);
     }
 }

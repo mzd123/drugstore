@@ -1,6 +1,13 @@
 package com.mzd.drugstore.filter;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.mzd.drugstore.bean.backresult.RoleAuthorityUri;
+import com.mzd.drugstore.bean.generator.Authority;
+import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.constant.Constant;
+import com.mzd.drugstore.dao.CommonDao;
+import com.mzd.drugstore.server.CommonServer;
 import com.mzd.drugstore.utils.MyStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -10,12 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class MyInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    private CommonServer commonServer;
     private final String api = Constant.drugstore + Constant.authority;
 
     /**
@@ -38,16 +48,35 @@ public class MyInterceptor implements HandlerInterceptor {
         if (!uri.contains(api)) {
             return true;
         } else {
-            String sessionid = MyStringUtils.Object2String(request.getSession().getId());
-            if (!sessionid.equals("")) {
-                //获取改用的所有权限点
-                List authoritys = redisTemplate.opsForList().range(sessionid + Constant.user_authoritys_uri, 0, -1);
-                if (authoritys.size() != 0) {
+            User user = (User) request.getSession().getAttribute("user");
+            if (user != null) {
+                String roleid = user.getUserRoleid();
+                if (MyStringUtils.Object2String(roleid).equals("")) {
+                    List authoritys = new ArrayList();
+                    String str = (String) redisTemplate.opsForValue().get(user.getUserRoleid());
+                    //redis中还没这个缓存
+                    List list = new ArrayList();
+                    if (MyStringUtils.Object2String(str).equals("")) {
+                        RoleAuthorityUri roleAuthorityUri = commonServer.getRoleAuthorityUriByRoleidS(user.getUserRoleid());
+                        list = roleAuthorityUri.getList();
+                    } else {
+                        JSONObject jsonObject = JSON.parseObject(str);
+                        list = jsonObject.getJSONArray("list");
+                        // list.stream().forEach(System.out::println);
+                    }
+                    if (list == null || list.size() == 0) {
+                        request.getSession().setAttribute("msg", "你未被赋权");
+                    }
+                    for (Object object : list) {
+                        Authority authority = (Authority) object;
+                        authoritys.add(authority.getAuthorityUri());
+                    }
                     if (authoritys.contains(uri)) {
                         return true;
                     }
                     request.getSession().setAttribute("msg", "权限不足");
                 }
+                request.getSession().setAttribute("msg", "你未被赋权");
             } else {
                 //还没登入过
                 request.getSession().setAttribute("msg", "你还没登入过，请先登入");

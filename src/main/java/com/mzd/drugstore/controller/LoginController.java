@@ -2,11 +2,10 @@ package com.mzd.drugstore.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mzd.drugstore.bean.MyResult;
-import com.mzd.drugstore.bean.backresult.UserWithRole;
-import com.mzd.drugstore.bean.generator.Authority;
-import com.mzd.drugstore.bean.generator.Role;
+import com.mzd.drugstore.bean.generator.MyLog;
 import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.constant.Constant;
+import com.mzd.drugstore.server.CommonServer;
 import com.mzd.drugstore.server.LoginServer;
 import com.mzd.drugstore.utils.*;
 import io.swagger.annotations.Api;
@@ -22,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Api("LoginController")
@@ -34,6 +35,8 @@ public class LoginController {
     @Autowired
     private LoginServer loginServer;
     @Autowired
+    private CommonServer commonServer;
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
@@ -74,7 +77,7 @@ public class LoginController {
             String sessionid = request.getSession().getId();
             String str = "";
             str = MyStringUtils.getcode(4);
-            redisTemplate.opsForValue().set(sessionid + Constant.user_verificationcode, str);
+            redisTemplate.opsForValue().set(sessionid + Constant.user_verificationcode, str, Constant.verificationcode_time, TimeUnit.SECONDS);
             HashMap hashMap = new HashMap();
             hashMap.put("verificationcode", str);
             return ResultUtils.getResult("200", "获取验证码成功", hashMap, 0);
@@ -106,6 +109,9 @@ public class LoginController {
         try {
             String sessionid = request.getSession().getId();
             String s = (String) redisTemplate.opsForValue().get(sessionid + Constant.user_verificationcode);
+            if (s == null || s.equals("")) {
+                return ResultUtils.getResult("400", "验证码已过期", null, 0);
+            }
             if (!MyStringUtils.Object2String(verificationcode).equals(s)) {
                 //验证码不正确
                 return ResultUtils.getResult("400", "验证码不正确", null, 0);
@@ -185,7 +191,7 @@ public class LoginController {
                  * 二、防止这个用户刚发送玩邮件，别人直接调用修改密码的接口。
                  */
                 String sessionid = request.getSession().getId();
-                redisTemplate.opsForValue().set(sessionid + Constant.user_verificationcode, str);
+                redisTemplate.opsForValue().set(sessionid + Constant.user_verificationcode, str, Constant.verificationcode_time, TimeUnit.SECONDS);
                 return ResultUtils.getResult("200", "发送邮件成功", null, 0);
             } else {
                 return ResultUtils.getResult("400", "账号和邮件不相匹配，发送邮件失败", null, 0);
@@ -226,6 +232,9 @@ public class LoginController {
             }
             String sessionid = request.getSession().getId();
             String code = (String) redisTemplate.opsForValue().get(sessionid + Constant.user_verificationcode);
+            if (code == null || code.equals("")) {
+                return ResultUtils.getResult("400", "验证码已过期", null, 0);
+            }
             if (!verificationcode.equals(code)) {
                 return ResultUtils.getResult("400", "验证码错误", null, 0);
             }
@@ -276,34 +285,51 @@ public class LoginController {
             }
             String sessionid = request.getSession().getId();
             String code = (String) redisTemplate.opsForValue().get(sessionid + Constant.user_verificationcode);
+            if (code == null || code.equals("")) {
+                return ResultUtils.getResult("400", "验证码已过期", null, 0);
+            }
             if (!verificationcode.equals(code)) {
                 return ResultUtils.getResult("400", "验证码错误", null, 0);
             }
-            List<UserWithRole> list = loginServer.getUserWithRole_username_userpasswordS(username, Md5Utils.getMD5(password));
+            User user = new User();
+            user.setUserPassword(Md5Utils.getMD5(password));
+            user.setUserName(username);
+            List<User> list = loginServer.getuserS(user);
             if (list != null && list.size() > 0) {
                 /**
-                 *用户登入成功
+                 *用户存在
                  */
-                UserWithRole userWithRole = list.get(0);
-                Role role = userWithRole.getRole();
-                String authoritysid = role.getAuthorityId();
-                String[] authoritysid_arr = authoritysid.split(",");
-                List<String> list1 = Arrays.asList(authoritysid_arr);
-                //list1.stream().forEach(System.out::print);
-                //根据权限id集合获取权限对象集合
-                List<Authority> authoritys = loginServer.getAuthoritysByidsS(list1);
-                //authoritys.stream().forEach(System.out::print);
-                //将该用户的权限uri加入redis中
-                for (Object o : authoritys) {
-                    Authority authority = (Authority) o;
-                    String uri = authority.getAuthorityUri();
-                    redisTemplate.opsForList().leftPush(sessionid + Constant.user_authoritys_uri, uri);
+                user = list.get(0);
+                /**
+                 * 处理同一个浏览器不同用户登入时，session里面的值保留问题，即同一个浏览器不同用户登入，第二个登入的时候，第一个登入的session将会被销毁
+                 */
+                request.getSession().invalidate();
+                /**
+                 * 处理用户非安全退出之后，又重新登入的情况
+                 * 先销毁原来的session，然后记录数据库这个人已经退出，然后再登入
+                 * 缺点在于：一个账号只能一个用户登入，第二个会将第一个用户挤下来
+                 */
+                //从ServletContext中获取这个人上次登入时候的session
+                Map map = (Map) request.getSession().getServletContext().getAttribute("map");
+                HttpSession session = (HttpSession) map.get(user.getUserId());
+                if (session != null) {
+                    session.invalidate();
                 }
-                //将用户的id存入redis中
-                redisTemplate.opsForValue().set(sessionid + Constant.userid, list.get(0).getUserId());
-                System.out.println(JSONObject.toJSONString(list.get(0)));
-                redisTemplate.opsForValue().set(sessionid + Constant.userinfo, JSONObject.toJSONString(list.get(0)));
-                return ResultUtils.getResult("200", "登入成功", list.get(0), 0);
+                /**
+                 * 处理该用户本次登入
+                 */
+                //操作日志，证明这个人登入
+                MyLog mylog = new MyLog();
+                mylog.setTableId(user.getUserId());
+                mylog.setOptionconent(Constant.login);
+                mylog.setUseId(user.getUserId());
+                mylog.setLogId(MyStringUtils.getuuid());
+                mylog.setTablename(Constant.cs_user);
+                mylog.setCreatetime(TimeUtils.get_current_time());
+                commonServer.insertLogS(mylog);
+                redisTemplate.opsForValue().set(Constant.userinfo + sessionid, JSONObject.toJSONString(user));
+                request.getSession().setAttribute("user", user);
+                return ResultUtils.getResult("200", "登入成功", user, 0);
             }
             return ResultUtils.getResult("400", "账号或密码错误", null, 0);
         } catch (Exception e) {
@@ -314,13 +340,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = api + "logout", method = RequestMethod.GET)
-    @ApiOperation("用户退出")
+    @ApiOperation("用户安全退出")
     public MyResult logout(HttpServletRequest request) {
         try {
             String sessionid = request.getSession().getId();
             if (!MyStringUtils.Object2String(sessionid).equals("")) {
-                //清楚redis中的所有关于这个用户的缓存信息
-                redisTemplate.delete(redisTemplate.keys(sessionid + "*"));
                 //销毁该用户的session
                 request.getSession().invalidate();
                 return ResultUtils.getResult("200", "安全退出！！！", null, 0);

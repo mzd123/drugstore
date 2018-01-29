@@ -23,12 +23,14 @@ public class EmailUtils {
         boolean isF = false;
         Session session = getsession();
         if (session != null) {
-            System.out.println("aaa");
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromuser));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(touser));
             message.setSubject("找回密码!");
-            message.setContent("验证码为（修改密码的时候带上验证码哦！）：" + str + "</br><a href='XXX.jsp?username=" + username + "'>点击找回</a>", "text/html; charset=utf-8");
+            message.setContent("验证码为：" + str + "</br>" +
+                    "（修改密码的时候带上验证码哦！）</br>" +
+                    "验证码的有效时间为5分钟</br>" +
+                    "<a href='XXX.jsp?username=" + username + "'>点击找回</a>", "text/html; charset=utf-8");
             Transport.send(message);
             isF = true;
         }

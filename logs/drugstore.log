@@ -1,7 +1,5 @@
-2018-01-24 13:22:07,124:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 33, 查看我的订单, null
-2018-01-24 13:22:07,131:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 41, 上报售后服务, null
-2018-01-24 13:22:07,131:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 42, 查看我的售后服务, null
-2018-01-24 13:22:07,132:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 43, 查看我的售后服务详情, null
-2018-01-24 13:22:07,132:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 51, 对自己信息的增删改查, null
-2018-01-24 13:22:07,133:TRACE http-nio-8080-exec-5 (BaseJdbcLogger.java:165) - <==        Row: 54, 对自己收货地址的增删改查, null
-2018-01-24 13:22:07,134:DEBUG http-nio-8080-exec-5 (BaseJdbcLogger.java:159) - <==      Total: 17
+2018-01-25 12:48:40,493:TRACE http-nio-8080-exec-2 (BaseJdbcLogger.java:165) - <==        Row: 64cfd487439f4d63a5b7a3539486cdbd, 123, cfcd208495d565ef66e7dff9f98764da, 123, 123, 2018-01-22 21:30:28, 1, 1
+2018-01-25 12:48:40,506:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - <==      Total: 1
+2018-01-25 12:50:41,123:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - ==>  Preparing: insert into cs_log (log_id, use_id, optionconent, tablename, table_id, createtime ) values (?, ?, ?, ?, ?, ? ) 
+2018-01-25 12:50:41,141:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - ==> Parameters: 9b112253ae534c24b358fb75846ff948(String), null, 登入(String), cs_user(String), null, 2018-01-25 12:50:40(String)
+2018-01-25 12:50:41,148:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - <==    Updates: 1

@@ -1,7 +1,5 @@
 package com.mzd.drugstore.server;
 
-import com.mzd.drugstore.bean.backresult.UserWithRole;
-import com.mzd.drugstore.bean.generator.Authority;
 import com.mzd.drugstore.bean.generator.MyLog;
 import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.constant.Constant;
@@ -108,24 +106,5 @@ public class LoginServer {
         return false;
     }
 
-    /**
-     * 根据用户账号密码获取用户带角色的对象集合
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-    public List<UserWithRole> getUserWithRole_username_userpasswordS(String username, String password) {
-        return loginDao.getUserWithRole_username_userpasswordD(username, password);
-    }
 
-    /**
-     * 根据权限id集合查询权限对象集合
-     *
-     * @param list1
-     * @return
-     */
-    public List<Authority> getAuthoritysByidsS(List<String> list1) {
-        return loginDao.getAuthoritysByidsD(list1);
-    }
 }
