@@ -5,6 +5,8 @@ public class Productclass {
 
     private String productclassName;
 
+    private String productclassStatus;
+
     public String getProductclassId() {
         return productclassId;
     }
@@ -19,5 +21,13 @@ public class Productclass {
 
     public void setProductclassName(String productclassName) {
         this.productclassName = productclassName == null ? null : productclassName.trim();
+    }
+
+    public String getProductclassStatus() {
+        return productclassStatus;
+    }
+
+    public void setProductclassStatus(String productclassStatus) {
+        this.productclassStatus = productclassStatus == null ? null : productclassStatus.trim();
     }
 }

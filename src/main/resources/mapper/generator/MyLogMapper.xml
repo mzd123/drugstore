@@ -8,6 +8,7 @@
     <result column="tablename" jdbcType="VARCHAR" property="tablename" />
     <result column="table_id" jdbcType="VARCHAR" property="tableId" />
     <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="optionip" jdbcType="VARCHAR" property="optionip" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    log_id, use_id, optionconent, tablename, table_id, createtime
+    log_id, use_id, optionconent, tablename, table_id, createtime, optionip
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.MyLogExample" resultMap="BaseResultMap">
     select
@@ -92,11 +93,11 @@
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.MyLog">
     insert into cs_log (log_id, use_id, optionconent, 
-      tablename, table_id, createtime
-      )
+      tablename, table_id, createtime, 
+      optionip)
     values (#{logId,jdbcType=VARCHAR}, #{useId,jdbcType=VARCHAR}, #{optionconent,jdbcType=VARCHAR}, 
-      #{tablename,jdbcType=VARCHAR}, #{tableId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
-      )
+      #{tablename,jdbcType=VARCHAR}, #{tableId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{optionip,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.MyLog">
     insert into cs_log
@@ -119,6 +120,9 @@
       <if test="createtime != null">
         createtime,
       </if>
+      <if test="optionip != null">
+        optionip,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="logId != null">
@@ -138,6 +142,9 @@
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="optionip != null">
+        #{optionip,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -168,6 +175,9 @@
       <if test="record.createtime != null">
         createtime = #{record.createtime,jdbcType=VARCHAR},
       </if>
+      <if test="record.optionip != null">
+        optionip = #{record.optionip,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +190,8 @@
       optionconent = #{record.optionconent,jdbcType=VARCHAR},
       tablename = #{record.tablename,jdbcType=VARCHAR},
       table_id = #{record.tableId,jdbcType=VARCHAR},
-      createtime = #{record.createtime,jdbcType=VARCHAR}
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      optionip = #{record.optionip,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -74,4 +74,6 @@ public interface Constant {
     String productclass = "productclass";
     //商品分类过期时间---一天
     int productclass_time = 60 * 60 * 24;
+    //商品集合过期时间----1小时
+    int product_time = 60 * 60;
 }

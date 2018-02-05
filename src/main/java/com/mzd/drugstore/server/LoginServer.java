@@ -5,6 +5,7 @@ import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.constant.Constant;
 import com.mzd.drugstore.dao.CommonDao;
 import com.mzd.drugstore.dao.LoginDao;
+import com.mzd.drugstore.utils.IpUtils;
 import com.mzd.drugstore.utils.MyStringUtils;
 import com.mzd.drugstore.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -47,7 +49,7 @@ public class LoginServer {
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
-    public int registerS(User user) throws Exception {
+    public int registerS(User user, HttpServletRequest request) throws Exception {
         int ii = 0;
         int i = loginDao.registerD(user);
         if (i > 0) {
@@ -59,6 +61,7 @@ public class LoginServer {
             log.setTablename(Constant.cs_user);
             log.setTableId(user.getUserId());
             log.setOptionconent(Constant.insert);
+            log.setOptionip(IpUtils.getIp(request));
             int j = commonDao.insertLogD(log);
             if (j > 0) {
                 ii = 1;
@@ -85,7 +88,7 @@ public class LoginServer {
      * @return
      */
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
-    public boolean updateuserByuserNameS(User user) throws Exception {
+    public boolean updateuserByuserNameS(User user, HttpServletRequest request) throws Exception {
         int ii = 0;
         int i = loginDao.updateuserByuserNameD(user);
         if (i > 0) {
@@ -97,6 +100,7 @@ public class LoginServer {
             log.setTablename(Constant.cs_user);
             log.setTableId(user.getUserId());
             log.setOptionconent(Constant.update);
+            log.setOptionip(IpUtils.getIp(request));
             int j = commonDao.insertLogD(log);
             if (j > 0) {
                 ii = 1;

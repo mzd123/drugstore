@@ -140,7 +140,7 @@ public class LoginController {
             user.setUserStatus(Constant.liefstatus);
             user.setUserTel(tel);
             user.setUserRoleid(Constant.generaluserR_id);
-            int i = loginServer.registerS(user);
+            int i = loginServer.registerS(user, request);
             if (i > 0) {
                 return ResultUtils.getResult("200", null, null, 0);
             }
@@ -246,7 +246,7 @@ public class LoginController {
             List<User> list = loginServer.getuserS(user);
             user = list.get(0);
             user.setUserPassword(Md5Utils.getMD5(newpassword));
-            boolean isF = loginServer.updateuserByuserNameS(user);
+            boolean isF = loginServer.updateuserByuserNameS(user, request);
             if (isF) {
                 return ResultUtils.getResult("200", "修改密码成功", null, 0);
             }
@@ -326,9 +326,12 @@ public class LoginController {
                 mylog.setLogId(MyStringUtils.getuuid());
                 mylog.setTablename(Constant.cs_user);
                 mylog.setCreatetime(TimeUtils.get_current_time());
+                mylog.setOptionip(IpUtils.getIp(request));
                 int i = commonServer.insertLogS(mylog);
-                redisTemplate.opsForValue().set(Constant.userinfo + sessionid, JSONObject.toJSONString(user));
                 request.getSession().setAttribute("user", user);
+                //重置一下sessionid
+                sessionid = request.getSession().getId();
+                redisTemplate.opsForValue().set(Constant.userinfo + sessionid, JSONObject.toJSONString(user));
                 if (i > 0) {
                     return ResultUtils.getResult("200", "登入成功", user, 0);
                 }

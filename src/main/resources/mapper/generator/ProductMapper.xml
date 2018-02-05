@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Product">
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    <result column="product_price" jdbcType="VARCHAR" property="productPrice" />
     <result column="product_img" jdbcType="VARCHAR" property="productImg" />
     <result column="product_description" jdbcType="VARCHAR" property="productDescription" />
     <result column="product_createtime" jdbcType="VARCHAR" property="productCreatetime" />
@@ -101,7 +101,7 @@
       product_img, product_description, product_createtime, 
       product_status, product_ifactivity, product_number, 
       product_monthbuy, class_id)
-    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=DECIMAL}, 
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=VARCHAR}, 
       #{productImg,jdbcType=VARCHAR}, #{productDescription,jdbcType=VARCHAR}, #{productCreatetime,jdbcType=VARCHAR}, 
       #{productStatus,jdbcType=VARCHAR}, #{productIfactivity,jdbcType=VARCHAR}, #{productNumber,jdbcType=VARCHAR}, 
       #{productMonthbuy,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR})
@@ -151,7 +151,7 @@
         #{productName,jdbcType=VARCHAR},
       </if>
       <if test="productPrice != null">
-        #{productPrice,jdbcType=DECIMAL},
+        #{productPrice,jdbcType=VARCHAR},
       </if>
       <if test="productImg != null">
         #{productImg,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
         product_name = #{record.productName,jdbcType=VARCHAR},
       </if>
       <if test="record.productPrice != null">
-        product_price = #{record.productPrice,jdbcType=DECIMAL},
+        product_price = #{record.productPrice,jdbcType=VARCHAR},
       </if>
       <if test="record.productImg != null">
         product_img = #{record.productImg,jdbcType=VARCHAR},
@@ -230,7 +230,7 @@
     update cs_product
     set product_id = #{record.productId,jdbcType=VARCHAR},
       product_name = #{record.productName,jdbcType=VARCHAR},
-      product_price = #{record.productPrice,jdbcType=DECIMAL},
+      product_price = #{record.productPrice,jdbcType=VARCHAR},
       product_img = #{record.productImg,jdbcType=VARCHAR},
       product_description = #{record.productDescription,jdbcType=VARCHAR},
       product_createtime = #{record.productCreatetime,jdbcType=VARCHAR},

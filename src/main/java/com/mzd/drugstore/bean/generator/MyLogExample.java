@@ -523,6 +523,76 @@ public class MyLogExample {
             addCriterion("createtime not between", value1, value2, "createtime");
             return (Criteria) this;
         }
+
+        public Criteria andOptionipIsNull() {
+            addCriterion("optionip is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipIsNotNull() {
+            addCriterion("optionip is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipEqualTo(String value) {
+            addCriterion("optionip =", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipNotEqualTo(String value) {
+            addCriterion("optionip <>", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipGreaterThan(String value) {
+            addCriterion("optionip >", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipGreaterThanOrEqualTo(String value) {
+            addCriterion("optionip >=", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipLessThan(String value) {
+            addCriterion("optionip <", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipLessThanOrEqualTo(String value) {
+            addCriterion("optionip <=", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipLike(String value) {
+            addCriterion("optionip like", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipNotLike(String value) {
+            addCriterion("optionip not like", value, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipIn(List<String> values) {
+            addCriterion("optionip in", values, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipNotIn(List<String> values) {
+            addCriterion("optionip not in", values, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipBetween(String value1, String value2) {
+            addCriterion("optionip between", value1, value2, "optionip");
+            return (Criteria) this;
+        }
+
+        public Criteria andOptionipNotBetween(String value1, String value2) {
+            addCriterion("optionip not between", value1, value2, "optionip");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

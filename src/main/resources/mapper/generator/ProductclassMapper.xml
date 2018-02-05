@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mzd.drugstore.bean.generator.Productclass">
     <result column="productclass_id" jdbcType="VARCHAR" property="productclassId" />
     <result column="productclass_name" jdbcType="VARCHAR" property="productclassName" />
+    <result column="productclass_status" jdbcType="VARCHAR" property="productclassStatus" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    productclass_id, productclass_name
+    productclass_id, productclass_name, productclass_status
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ProductclassExample" resultMap="BaseResultMap">
     select
@@ -87,8 +88,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Productclass">
-    insert into cs_productclass (productclass_id, productclass_name)
-    values (#{productclassId,jdbcType=VARCHAR}, #{productclassName,jdbcType=VARCHAR})
+    insert into cs_productclass (productclass_id, productclass_name, 
+      productclass_status)
+    values (#{productclassId,jdbcType=VARCHAR}, #{productclassName,jdbcType=VARCHAR}, 
+      #{productclassStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Productclass">
     insert into cs_productclass
@@ -99,6 +102,9 @@
       <if test="productclassName != null">
         productclass_name,
       </if>
+      <if test="productclassStatus != null">
+        productclass_status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="productclassId != null">
@@ -106,6 +112,9 @@
       </if>
       <if test="productclassName != null">
         #{productclassName,jdbcType=VARCHAR},
+      </if>
+      <if test="productclassStatus != null">
+        #{productclassStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="record.productclassName != null">
         productclass_name = #{record.productclassName,jdbcType=VARCHAR},
       </if>
+      <if test="record.productclassStatus != null">
+        productclass_status = #{record.productclassStatus,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -132,7 +144,8 @@
   <update id="updateByExample" parameterType="map">
     update cs_productclass
     set productclass_id = #{record.productclassId,jdbcType=VARCHAR},
-      productclass_name = #{record.productclassName,jdbcType=VARCHAR}
+      productclass_name = #{record.productclassName,jdbcType=VARCHAR},
+      productclass_status = #{record.productclassStatus,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

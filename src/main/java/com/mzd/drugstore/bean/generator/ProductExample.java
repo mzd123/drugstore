@@ -254,52 +254,62 @@ public class ProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceEqualTo(Long value) {
+        public Criteria andProductPriceEqualTo(String value) {
             addCriterion("product_price =", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceNotEqualTo(Long value) {
+        public Criteria andProductPriceNotEqualTo(String value) {
             addCriterion("product_price <>", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceGreaterThan(Long value) {
+        public Criteria andProductPriceGreaterThan(String value) {
             addCriterion("product_price >", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceGreaterThanOrEqualTo(Long value) {
+        public Criteria andProductPriceGreaterThanOrEqualTo(String value) {
             addCriterion("product_price >=", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceLessThan(Long value) {
+        public Criteria andProductPriceLessThan(String value) {
             addCriterion("product_price <", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceLessThanOrEqualTo(Long value) {
+        public Criteria andProductPriceLessThanOrEqualTo(String value) {
             addCriterion("product_price <=", value, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceIn(List<Long> values) {
+        public Criteria andProductPriceLike(String value) {
+            addCriterion("product_price like", value, "productPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductPriceNotLike(String value) {
+            addCriterion("product_price not like", value, "productPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductPriceIn(List<String> values) {
             addCriterion("product_price in", values, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceNotIn(List<Long> values) {
+        public Criteria andProductPriceNotIn(List<String> values) {
             addCriterion("product_price not in", values, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceBetween(Long value1, Long value2) {
+        public Criteria andProductPriceBetween(String value1, String value2) {
             addCriterion("product_price between", value1, value2, "productPrice");
             return (Criteria) this;
         }
 
-        public Criteria andProductPriceNotBetween(Long value1, Long value2) {
+        public Criteria andProductPriceNotBetween(String value1, String value2) {
             addCriterion("product_price not between", value1, value2, "productPrice");
             return (Criteria) this;
         }

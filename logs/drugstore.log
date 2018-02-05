@@ -1,5 +1,3 @@
-2018-01-25 12:48:40,493:TRACE http-nio-8080-exec-2 (BaseJdbcLogger.java:165) - <==        Row: 64cfd487439f4d63a5b7a3539486cdbd, 123, cfcd208495d565ef66e7dff9f98764da, 123, 123, 2018-01-22 21:30:28, 1, 1
-2018-01-25 12:48:40,506:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - <==      Total: 1
-2018-01-25 12:50:41,123:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - ==>  Preparing: insert into cs_log (log_id, use_id, optionconent, tablename, table_id, createtime ) values (?, ?, ?, ?, ?, ? ) 
-2018-01-25 12:50:41,141:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - ==> Parameters: 9b112253ae534c24b358fb75846ff948(String), null, 登入(String), cs_user(String), null, 2018-01-25 12:50:40(String)
-2018-01-25 12:50:41,148:DEBUG http-nio-8080-exec-2 (BaseJdbcLogger.java:159) - <==    Updates: 1
+2018-02-05 21:29:09,990:TRACE http-nio-8080-exec-1 (BaseJdbcLogger.java:165) - <==        Row: 1, 西瓜霜, 10, null, 西瓜霜含片, null, 1, 0, 100, 31, 1
+2018-02-05 21:29:10,010:TRACE http-nio-8080-exec-1 (BaseJdbcLogger.java:165) - <==        Row: 3, 金嗓子, 8, null, 治嗓子, null, 1, 0, 150, 32, 1
+2018-02-05 21:29:10,012:DEBUG http-nio-8080-exec-1 (BaseJdbcLogger.java:159) - <==      Total: 2

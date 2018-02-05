@@ -5,7 +5,7 @@ public class Product {
 
     private String productName;
 
-    private Long productPrice;
+    private String productPrice;
 
     private String productImg;
 
@@ -39,12 +39,12 @@ public class Product {
         this.productName = productName == null ? null : productName.trim();
     }
 
-    public Long getProductPrice() {
+    public String getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Long productPrice) {
-        this.productPrice = productPrice;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice == null ? null : productPrice.trim();
     }
 
     public String getProductImg() {

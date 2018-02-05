@@ -13,6 +13,8 @@ public class MyLog {
 
     private String createtime;
 
+    private String optionip;
+
     public String getLogId() {
         return logId;
     }
@@ -59,5 +61,13 @@ public class MyLog {
 
     public void setCreatetime(String createtime) {
         this.createtime = createtime == null ? null : createtime.trim();
+    }
+
+    public String getOptionip() {
+        return optionip;
+    }
+
+    public void setOptionip(String optionip) {
+        this.optionip = optionip == null ? null : optionip.trim();
     }
 }
