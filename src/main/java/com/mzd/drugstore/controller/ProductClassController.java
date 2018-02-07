@@ -57,7 +57,7 @@ public class ProductClassController {
     @ApiOperation("修改商品分类")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "productclassid", value = "商品类id", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "productclassname", value = "商品名字", required = true, dataType = "Stirng", paramType = "query")
+            @ApiImplicitParam(name = "productclassname", value = "商品名字", required = true, dataType = "String", paramType = "query")
     })
     public MyResult update_product_class(String productclassid, String productclassname, HttpServletRequest request) {
         try {
@@ -99,7 +99,7 @@ public class ProductClassController {
     @RequestMapping(value = authority_api + "add_product_class", method = RequestMethod.GET)
     @ApiOperation("增加商品分类")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "productclassname", value = "商品分类名字", dataType = "Stirng", required = true, paramType = "query")
+            @ApiImplicitParam(name = "productclassname", value = "商品分类名字", dataType = "String", required = true, paramType = "query")
     })
     public MyResult add_product_class(String productclassname, HttpServletRequest request) {
         try {
@@ -148,7 +148,7 @@ public class ProductClassController {
             Productclass productclass = new Productclass();
             productclass.setProductclassId(productclassid);
             int i = productClassServer.delete_product_classS(productclass);
-            if (i > 0) {
+            if (i == 1) {
                 MyLog myLog = new MyLog();
                 myLog.setCreatetime(TimeUtils.get_current_time());
                 myLog.setTablename(Constant.productclass);
@@ -163,6 +163,8 @@ public class ProductClassController {
                     return ResultUtils.getResult("200", "删除商品分类成功", null, 0);
                 }
                 return ResultUtils.getResult("200", "删除商品分类成功，但更新日志失败", null, 0);
+            } else if (i == -1) {
+                return ResultUtils.getResult("400", "商品分类id有误", null, 0);
             }
             return ResultUtils.getResult("500", "删除商品失败", null, 0);
         } catch (Exception e) {

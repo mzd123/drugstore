@@ -56,16 +56,16 @@ public class ProductClassDao {
         return productclassMapper.insert(productclass);
     }
 
-    /**
-     * 删除商品分类
-     *
-     * @param productclass
-     * @return
-     */
-    public int delete_product_classD(Productclass productclass) {
-        ProductclassExample productclassExample = new ProductclassExample();
-        ProductclassExample.Criteria criteria = productclassExample.createCriteria();
-        criteria.andProductclassIdEqualTo(productclass.getProductclassId());
-        return productclassMapper.deleteByExample(productclassExample);
-    }
+//    /**
+//     * 删除商品分类
+//     *
+//     * @param productclass
+//     * @return
+//     */
+//    public int delete_product_classD(Productclass productclass) {
+//        ProductclassExample productclassExample = new ProductclassExample();
+//        ProductclassExample.Criteria criteria = productclassExample.createCriteria();
+//        criteria.andProductclassIdEqualTo(productclass.getProductclassId());
+//        return productclassMapper.deleteByExample(productclassExample);
+//    }
 }

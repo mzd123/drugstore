@@ -5,14 +5,13 @@
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="product_price" jdbcType="VARCHAR" property="productPrice" />
-    <result column="product_img" jdbcType="VARCHAR" property="productImg" />
     <result column="product_description" jdbcType="VARCHAR" property="productDescription" />
     <result column="product_createtime" jdbcType="VARCHAR" property="productCreatetime" />
     <result column="product_status" jdbcType="VARCHAR" property="productStatus" />
     <result column="product_ifactivity" jdbcType="VARCHAR" property="productIfactivity" />
     <result column="product_number" jdbcType="VARCHAR" property="productNumber" />
-    <result column="product_monthbuy" jdbcType="VARCHAR" property="productMonthbuy" />
     <result column="class_id" jdbcType="VARCHAR" property="classId" />
+    <result column="product_main_img" jdbcType="VARCHAR" property="productMainImg" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    product_id, product_name, product_price, product_img, product_description, product_createtime, 
-    product_status, product_ifactivity, product_number, product_monthbuy, class_id
+    product_id, product_name, product_price, product_description, product_createtime, 
+    product_status, product_ifactivity, product_number, class_id, product_main_img
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ProductExample" resultMap="BaseResultMap">
     select
@@ -98,13 +97,13 @@
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Product">
     insert into cs_product (product_id, product_name, product_price, 
-      product_img, product_description, product_createtime, 
+      product_description, product_createtime, 
       product_status, product_ifactivity, product_number, 
-      product_monthbuy, class_id)
+      class_id, product_main_img)
     values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productPrice,jdbcType=VARCHAR}, 
-      #{productImg,jdbcType=VARCHAR}, #{productDescription,jdbcType=VARCHAR}, #{productCreatetime,jdbcType=VARCHAR}, 
+      #{productDescription,jdbcType=VARCHAR}, #{productCreatetime,jdbcType=VARCHAR}, 
       #{productStatus,jdbcType=VARCHAR}, #{productIfactivity,jdbcType=VARCHAR}, #{productNumber,jdbcType=VARCHAR}, 
-      #{productMonthbuy,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR})
+      #{classId,jdbcType=VARCHAR}, #{productMainImg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Product">
     insert into cs_product
@@ -117,9 +116,6 @@
       </if>
       <if test="productPrice != null">
         product_price,
-      </if>
-      <if test="productImg != null">
-        product_img,
       </if>
       <if test="productDescription != null">
         product_description,
@@ -136,11 +132,11 @@
       <if test="productNumber != null">
         product_number,
       </if>
-      <if test="productMonthbuy != null">
-        product_monthbuy,
-      </if>
       <if test="classId != null">
         class_id,
+      </if>
+      <if test="productMainImg != null">
+        product_main_img,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -152,9 +148,6 @@
       </if>
       <if test="productPrice != null">
         #{productPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="productImg != null">
-        #{productImg,jdbcType=VARCHAR},
       </if>
       <if test="productDescription != null">
         #{productDescription,jdbcType=VARCHAR},
@@ -171,11 +164,11 @@
       <if test="productNumber != null">
         #{productNumber,jdbcType=VARCHAR},
       </if>
-      <if test="productMonthbuy != null">
-        #{productMonthbuy,jdbcType=VARCHAR},
-      </if>
       <if test="classId != null">
         #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="productMainImg != null">
+        #{productMainImg,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -197,9 +190,6 @@
       <if test="record.productPrice != null">
         product_price = #{record.productPrice,jdbcType=VARCHAR},
       </if>
-      <if test="record.productImg != null">
-        product_img = #{record.productImg,jdbcType=VARCHAR},
-      </if>
       <if test="record.productDescription != null">
         product_description = #{record.productDescription,jdbcType=VARCHAR},
       </if>
@@ -215,11 +205,11 @@
       <if test="record.productNumber != null">
         product_number = #{record.productNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.productMonthbuy != null">
-        product_monthbuy = #{record.productMonthbuy,jdbcType=VARCHAR},
-      </if>
       <if test="record.classId != null">
         class_id = #{record.classId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productMainImg != null">
+        product_main_img = #{record.productMainImg,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -231,14 +221,13 @@
     set product_id = #{record.productId,jdbcType=VARCHAR},
       product_name = #{record.productName,jdbcType=VARCHAR},
       product_price = #{record.productPrice,jdbcType=VARCHAR},
-      product_img = #{record.productImg,jdbcType=VARCHAR},
       product_description = #{record.productDescription,jdbcType=VARCHAR},
       product_createtime = #{record.productCreatetime,jdbcType=VARCHAR},
       product_status = #{record.productStatus,jdbcType=VARCHAR},
       product_ifactivity = #{record.productIfactivity,jdbcType=VARCHAR},
       product_number = #{record.productNumber,jdbcType=VARCHAR},
-      product_monthbuy = #{record.productMonthbuy,jdbcType=VARCHAR},
-      class_id = #{record.classId,jdbcType=VARCHAR}
+      class_id = #{record.classId,jdbcType=VARCHAR},
+      product_main_img = #{record.productMainImg,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

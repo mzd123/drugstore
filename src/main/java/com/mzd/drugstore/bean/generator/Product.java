@@ -7,8 +7,6 @@ public class Product {
 
     private String productPrice;
 
-    private String productImg;
-
     private String productDescription;
 
     private String productCreatetime;
@@ -19,9 +17,9 @@ public class Product {
 
     private String productNumber;
 
-    private String productMonthbuy;
-
     private String classId;
+
+    private String productMainImg;
 
     public String getProductId() {
         return productId;
@@ -45,14 +43,6 @@ public class Product {
 
     public void setProductPrice(String productPrice) {
         this.productPrice = productPrice == null ? null : productPrice.trim();
-    }
-
-    public String getProductImg() {
-        return productImg;
-    }
-
-    public void setProductImg(String productImg) {
-        this.productImg = productImg == null ? null : productImg.trim();
     }
 
     public String getProductDescription() {
@@ -95,19 +85,19 @@ public class Product {
         this.productNumber = productNumber == null ? null : productNumber.trim();
     }
 
-    public String getProductMonthbuy() {
-        return productMonthbuy;
-    }
-
-    public void setProductMonthbuy(String productMonthbuy) {
-        this.productMonthbuy = productMonthbuy == null ? null : productMonthbuy.trim();
-    }
-
     public String getClassId() {
         return classId;
     }
 
     public void setClassId(String classId) {
         this.classId = classId == null ? null : classId.trim();
+    }
+
+    public String getProductMainImg() {
+        return productMainImg;
+    }
+
+    public void setProductMainImg(String productMainImg) {
+        this.productMainImg = productMainImg == null ? null : productMainImg.trim();
     }
 }

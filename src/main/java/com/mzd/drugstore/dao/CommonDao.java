@@ -4,6 +4,7 @@ import com.mzd.drugstore.bean.generator.Authority;
 import com.mzd.drugstore.bean.generator.MyLog;
 import com.mzd.drugstore.bean.generator.RoleExample;
 import com.mzd.drugstore.mapper.backresult.AuthorityByidListMapper;
+import com.mzd.drugstore.mapper.backresult.MyLogBatchMapper;
 import com.mzd.drugstore.mapper.generator.MyLogMapper;
 import com.mzd.drugstore.mapper.generator.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class CommonDao {
     private RoleMapper roleMapper;
     @Autowired
     private AuthorityByidListMapper authorityByidListMapper;
+    @Autowired
+    private MyLogBatchMapper myLogBatchMapper;
 
     /**
      * 对日志表的处理
@@ -52,4 +55,15 @@ public class CommonDao {
     public List<Authority> selectAuthorityByidsD(List<String> list) {
         return authorityByidListMapper.selectAuthorityByidsM(list);
     }
+
+    /**
+     * 批量处理日志
+     *
+     * @param list
+     * @return
+     */
+    public int insertLogBatchD(List<MyLog> list) {
+        return myLogBatchMapper.insertLogBatchM(list);
+    }
+
 }

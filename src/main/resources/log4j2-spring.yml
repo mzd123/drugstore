@@ -9,12 +9,12 @@ Appenders:
         ignoreExceptions: false  
         fileName: logs/drugstore.log
         filePattern: "logs/drugstore/$${date:yyyy-MM}/springboot -%d{yyyy-MM-dd}-%i.log.zip"
-        PatternLayout:  
+        PatternLayout:
           pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"  
         Policies:  
           SizeBasedTriggeringPolicy:
-          #每个.log文件最大为2KB
-            size: "2KB"
+          #每个.log文件最大为2M
+            size: "2M"
         DefaultRolloverStrategy:
         #每天打一次包
           max: 1
@@ -22,7 +22,8 @@ Loggers:
     Root:
       level: info #输出info以上的级别， 从高到底：ERROR、WARN、INFO、DEBUG
       AppenderRef:  
-        - ref: CONSOLE  
+        - ref: CONSOLE
+        - ref: ROLLING_FILE
     Logger: #单独设置某些包的输出级别----不受level中配置的info限制
       - name: com.mzd.drugstore.mapper  #打sql日志
         additivity: false #去除重复的log

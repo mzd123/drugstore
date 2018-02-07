@@ -53,7 +53,7 @@ public class DrugstoreApplication {
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer(Charset.forName("UTF8")));
         //  http://stamen.iteye.com/blog/1907984
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<Object>(Object.class));
+       // redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<Object>(Object.class));
         return redisTemplate;
     }
 

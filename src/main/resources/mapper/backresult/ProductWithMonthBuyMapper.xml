@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.ProductWithMonthBuyMapper">
+    <resultMap id="ProductWithMonthBuy" type="com.mzd.drugstore.bean.backresult.ProductWithMonthBuy">
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_price" jdbcType="VARCHAR" property="productPrice"/>
+        <result column="product_description" jdbcType="VARCHAR" property="productDescription"/>
+        <result column="product_createtime" jdbcType="VARCHAR" property="productCreatetime"/>
+        <result column="product_status" jdbcType="VARCHAR" property="productStatus"/>
+        <result column="product_ifactivity" jdbcType="VARCHAR" property="productIfactivity"/>
+        <result column="product_number" jdbcType="VARCHAR" property="productNumber"/>
+        <result column="class_id" jdbcType="VARCHAR" property="classId"/>
+        <result column="product_monthbuy" jdbcType="VARCHAR" property="productmonthbuy"/>
+        <result column="product_main_img" jdbcType="VARCHAR" property="productMainImg"/>
+    </resultMap>
+    <select id="select_ProductWithMonthBuytM" resultMap="ProductWithMonthBuy">
+        SELECT p.*,b.product_monthbuy FROM cs_product p
+        LEFT JOIN
+        (SELECT productid,count(*)as product_monthbuy FROM cs_buy
+        <!--本月销量-->
+        where createtime>=(select DATE_ADD(curdate(),interval -day(curdate())+1 day))
+        GROUP BY productid ) as b
+        on b.productid=p.product_id
+        <!---未下架的-->
+        WHERE product_status='1'
+        <if test="productId!= null">
+            and product_id = #{productId}
+        </if>
+        <if test="productName!= null">
+            and product_name = #{productName}
+        </if>
+        <if test="productPrice!= null">
+            and product_price = #{productPrice}
+        </if>
+        <if test="productDescription!= null">
+            and product_description = #{productDescription}
+        </if>
+        <if test="productIfactivity!= null">
+            and product_ifactivity = #{productIfactivity}
+        </if>
+        <if test="productCreatetime!= null">
+            and product_createtime = #{productCreatetime}
+        </if>
+        <if test="productNumber!= null">
+            and product_number = #{productNumber}
+        </if>
+        <if test="classId!= null">
+            and class_id = #{classId}
+        </if>
+    </select>
+</mapper>

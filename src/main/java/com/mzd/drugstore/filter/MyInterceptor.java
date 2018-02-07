@@ -26,7 +26,7 @@ public class MyInterceptor implements HandlerInterceptor {
     private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private CommonServer commonServer;
-    private final String api = Constant.drugstore + Constant.authority;
+    private final String authority_api = Constant.drugstore + Constant.authority;
 
     /**
      * 在请求处理之前进行调用（Controller方法调用之前
@@ -45,7 +45,7 @@ public class MyInterceptor implements HandlerInterceptor {
          */
         String uri = request.getRequestURI();
         //如果是登入或者注册或者是找回密码等请求不进行拦截
-        if (!uri.contains(api)) {
+        if (!uri.contains(authority_api)) {
             return true;
         } else {
             User user = (User) request.getSession().getAttribute("user");

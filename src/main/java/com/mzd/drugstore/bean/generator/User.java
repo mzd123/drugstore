@@ -1,14 +1,11 @@
 package com.mzd.drugstore.bean.generator;
 
-
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 import java.util.Map;
 
 public class User implements HttpSessionBindingListener {
-
-
     private String userId;
 
     private String userName;

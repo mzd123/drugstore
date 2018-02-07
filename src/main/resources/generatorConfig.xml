@@ -33,21 +33,23 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table tableName="cs_authority" domainObjectName="Authority"/>
-        <table tableName="cs_role" domainObjectName="Role"/>
-        <table tableName="cs_user" domainObjectName="User"/>
-        <table tableName="cs_address" domainObjectName="Address"/>
-        <table tableName="cs_order" domainObjectName="Order"/>
-        <table tableName="cs_productclass" domainObjectName="Productclass"/>
+        <!--<table tableName="cs_authority" domainObjectName="Authority"/>-->
+        <!--<table tableName="cs_role" domainObjectName="Role"/>-->
+        <!--<table tableName="cs_user" domainObjectName="User"/>-->
+        <!--<table tableName="cs_address" domainObjectName="Address"/>-->
+        <!--<table tableName="cs_order" domainObjectName="Order"/>-->
+        <!--<table tableName="cs_productclass" domainObjectName="Productclass"/>-->
         <table tableName="cs_product" domainObjectName="Product"/>
-        <table tableName="cs_comment" domainObjectName="Comment"/>
-        <table tableName="cs_car" domainObjectName="Car"/>
-        <table tableName="cs_items" domainObjectName="Items"/>
-        <table tableName="cs_afterserver" domainObjectName="Afterserver"/>
-        <table tableName="cs_server" domainObjectName="Server"/>
-        <table tableName="cs_storemessage" domainObjectName="Storemessage"/>
-        <table tableName="cs_log" domainObjectName="MyLog"/>
-
+        <!--<table tableName="cs_buy" domainObjectName="Buy"/>-->
+        <!--<table tableName="cs_comment" domainObjectName="Comment"/>-->
+        <!--<table tableName="cs_car" domainObjectName="Car"/>-->
+        <!--<table tableName="cs_items" domainObjectName="Items"/>-->
+        <!--<table tableName="cs_afterserver" domainObjectName="Afterserver"/>-->
+        <!--<table tableName="cs_server" domainObjectName="Server"/>-->
+        <!--<table tableName="cs_storemessage" domainObjectName="Storemessage"/>-->
+        <!--<table tableName="cs_log" domainObjectName="MyLog"/>-->
+        <!--<table tableName="cs_afterserverimgs" domainObjectName="Afterserverimgs"/>-->
+        <!--<table tableName="cs_productimgs" domainObjectName="Productimgs"/>-->
     </context>
 
 </generatorConfiguration>
