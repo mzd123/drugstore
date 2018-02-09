@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.ProductWithOtherMapper">
+    <resultMap id="ProductWithMonthBuyAndImgs" type="com.mzd.drugstore.bean.backresult.ProductWithMonthBuyAndImgs">
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_price" jdbcType="VARCHAR" property="productPrice"/>
+        <result column="product_description" jdbcType="VARCHAR" property="productDescription"/>
+        <result column="product_createtime" jdbcType="VARCHAR" property="productCreatetime"/>
+        <result column="product_status" jdbcType="VARCHAR" property="productStatus"/>
+        <result column="product_ifactivity" jdbcType="VARCHAR" property="productIfactivity"/>
+        <result column="product_number" jdbcType="VARCHAR" property="productNumber"/>
+        <result column="class_id" jdbcType="VARCHAR" property="classId"/>
+        <result column="product_monthbuy" jdbcType="VARCHAR" property="productmonthbuy"/>
+        <result column="product_main_img" jdbcType="VARCHAR" property="productMainImg"/>
+        <collection property="productimgs" ofType="com.mzd.drugstore.bean.generator.Productimgs">
+            <result column="imgid" jdbcType="VARCHAR" property="imgid"/>
+            <result column="productid" jdbcType="VARCHAR" property="productid"/>
+            <result column="imgpath" jdbcType="VARCHAR" property="imgpath"/>
+            <result column="img_status" jdbcType="VARCHAR" property="imgStatus"/>
+        </collection>
+    </resultMap>
+    <select id="select_productWithMonthBuyAndImgsM" resultMap="ProductWithMonthBuyAndImgs">
+        SELECT p.*,b.product_monthbuy ,i.* FROM cs_product p
+        LEFT JOIN
+        (SELECT productid,count(*)as product_monthbuy FROM cs_buy
+        <!--本月销量-->
+        where createtime>=(select DATE_ADD(curdate(),interval -day(curdate())+1 day))
+        GROUP BY productid ) as b
+        on b.productid=p.product_id
+        LEFT JOIN cs_productimgs i
+        ON i.productid=p.product_id
+        <!---未下架的-->
+        WHERE product_status='1'
+        <if test="productId!= null">
+            and product_id = #{productId}
+        </if>
+        <if test="productName!= null">
+            and product_name = #{productName}
+        </if>
+        <if test="productPrice!= null">
+            and product_price = #{productPrice}
+        </if>
+        <if test="productDescription!= null">
+            and product_description = #{productDescription}
+        </if>
+        <if test="productIfactivity!= null">
+            and product_ifactivity = #{productIfactivity}
+        </if>
+        <if test="productCreatetime!= null">
+            and product_createtime = #{productCreatetime}
+        </if>
+        <if test="productNumber!= null">
+            and product_number = #{productNumber}
+        </if>
+        <if test="classId!= null">
+            and class_id = #{classId}
+        </if>
+    </select>
+
+    <resultMap id="ProductWithMonthBuy" type="com.mzd.drugstore.bean.backresult.ProductWithMonthBuy">
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="product_price" jdbcType="VARCHAR" property="productPrice"/>
+        <result column="product_description" jdbcType="VARCHAR" property="productDescription"/>
+        <result column="product_createtime" jdbcType="VARCHAR" property="productCreatetime"/>
+        <result column="product_status" jdbcType="VARCHAR" property="productStatus"/>
+        <result column="product_ifactivity" jdbcType="VARCHAR" property="productIfactivity"/>
+        <result column="product_number" jdbcType="VARCHAR" property="productNumber"/>
+        <result column="class_id" jdbcType="VARCHAR" property="classId"/>
+        <result column="product_monthbuy" jdbcType="VARCHAR" property="productmonthbuy"/>
+        <result column="product_main_img" jdbcType="VARCHAR" property="productMainImg"/>
+    </resultMap>
+    <select id="select_ProductWithMonthBuytM" resultMap="ProductWithMonthBuy">
+        SELECT p.*,b.product_monthbuy FROM cs_product p
+        LEFT JOIN
+        (SELECT productid,count(*)as product_monthbuy FROM cs_buy
+        <!--本月销量-->
+        where createtime>=(select DATE_ADD(curdate(),interval -day(curdate())+1 day))
+        GROUP BY productid ) as b
+        on b.productid=p.product_id
+        <!---未下架的-->
+        WHERE product_status='1'
+        <if test="productId!= null">
+            and product_id = #{productId}
+        </if>
+        <if test="productName!= null">
+            and product_name = #{productName}
+        </if>
+        <if test="productPrice!= null">
+            and product_price = #{productPrice}
+        </if>
+        <if test="productDescription!= null">
+            and product_description = #{productDescription}
+        </if>
+        <if test="productIfactivity!= null">
+            and product_ifactivity = #{productIfactivity}
+        </if>
+        <if test="productCreatetime!= null">
+            and product_createtime = #{productCreatetime}
+        </if>
+        <if test="productNumber!= null">
+            and product_number = #{productNumber}
+        </if>
+        <if test="classId!= null">
+            and class_id = #{classId}
+        </if>
+    </select>
+
+
+    <resultMap id="select_comment_by_productidM" type="com.mzd.drugstore.bean.backresult.ProductCommentAndImgs">
+        <result column="comment_id" jdbcType="VARCHAR" property="commentId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="comment_createtime" jdbcType="VARCHAR" property="commentCreatetime"/>
+        <result column="comment_status" jdbcType="VARCHAR" property="commentStatus"/>
+        <result column="comment_level" jdbcType="VARCHAR" property="commentLevel"/>
+        <result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+        <collection property="commentimgs" ofType="com.mzd.drugstore.bean.generator.Commentimgs">
+            <result column="imgid" jdbcType="VARCHAR" property="imgid"/>
+            <result column="commentid" jdbcType="VARCHAR" property="commentid"/>
+            <result column="imgpath" jdbcType="VARCHAR" property="imgpath"/>
+            <result column="img_status" jdbcType="VARCHAR" property="imgStatus"/>
+        </collection>
+    </resultMap>
+    <select id="select_comment_by_productidM" resultMap="select_comment_by_productidM">
+        SELECT * FROM (
+        SELECT * FROM cs_comment
+        where product_id=#{productid}
+        <if test="comment_level==0">
+            <!--全部-->
+        </if>
+        <if test="comment_level==1">
+            <!--好评-->
+            and comment_level &gt; 3
+        </if>
+        <if test="comment_level==2">
+            <!--中等评价-->
+            and comment_level=3
+        </if>
+        <if test="comment_level==3">
+            <!--差评-->
+            and comment_level &lt; 3
+        </if>
+        <!--按时间倒序排列-->
+        ORDER BY comment_createtime DESC
+        <!--分页-->
+        LIMIT #{pagenumber},#{pagesize}
+        ) c
+        LEFT JOIN cs_commentimgs i ON c.comment_id=i.commentid
+    </select>
+
+</mapper>

@@ -148,7 +148,7 @@ public class ProductClassController {
             Productclass productclass = new Productclass();
             productclass.setProductclassId(productclassid);
             int i = productClassServer.delete_product_classS(productclass);
-            if (i == 1) {
+            if (i > 0) {
                 MyLog myLog = new MyLog();
                 myLog.setCreatetime(TimeUtils.get_current_time());
                 myLog.setTablename(Constant.productclass);

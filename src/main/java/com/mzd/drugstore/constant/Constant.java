@@ -19,9 +19,13 @@ public interface Constant {
      */
     String liefstatus = "1";
     /**
-     * 系统路径
+     * 系统图片路径-商品
      */
-    String path = System.getProperty("user.dir") + "/imgs/";
+    String path_product = System.getProperty("user.dir") + "/imgs/product/";
+    /**
+     * 系统图片路径-评论
+     */
+    String path_comment = System.getProperty("user.dir") + "/imgs/comment/";
     /**
      * 普通用户角色
      */
@@ -87,4 +91,6 @@ public interface Constant {
     String productinfo = "productinfo";
     //商品集合-信息过期时间----1小时
     int product_time = 60 * 60;
+    //商品id为XXX的评论数
+    String commentall4productid = "commentall4productid";
 }

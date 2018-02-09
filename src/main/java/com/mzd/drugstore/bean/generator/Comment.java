@@ -11,7 +11,7 @@ public class Comment {
 
     private String commentStatus;
 
-    private String commentImg;
+    private String commentLevel;
 
     private String commentContent;
 
@@ -55,12 +55,12 @@ public class Comment {
         this.commentStatus = commentStatus == null ? null : commentStatus.trim();
     }
 
-    public String getCommentImg() {
-        return commentImg;
+    public String getCommentLevel() {
+        return commentLevel;
     }
 
-    public void setCommentImg(String commentImg) {
-        this.commentImg = commentImg == null ? null : commentImg.trim();
+    public void setCommentLevel(String commentLevel) {
+        this.commentLevel = commentLevel == null ? null : commentLevel.trim();
     }
 
     public String getCommentContent() {

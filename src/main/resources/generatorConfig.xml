@@ -39,9 +39,10 @@
         <!--<table tableName="cs_address" domainObjectName="Address"/>-->
         <!--<table tableName="cs_order" domainObjectName="Order"/>-->
         <!--<table tableName="cs_productclass" domainObjectName="Productclass"/>-->
-        <table tableName="cs_product" domainObjectName="Product"/>
+        <!--<table tableName="cs_product" domainObjectName="Product"/>-->
         <!--<table tableName="cs_buy" domainObjectName="Buy"/>-->
-        <!--<table tableName="cs_comment" domainObjectName="Comment"/>-->
+        <table tableName="cs_comment" domainObjectName="Comment"/>
+        <table tableName="cs_commentimgs" domainObjectName="Commentimgs"/>
         <!--<table tableName="cs_car" domainObjectName="Car"/>-->
         <!--<table tableName="cs_items" domainObjectName="Items"/>-->
         <!--<table tableName="cs_afterserver" domainObjectName="Afterserver"/>-->

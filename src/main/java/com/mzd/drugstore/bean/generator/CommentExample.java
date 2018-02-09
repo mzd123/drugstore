@@ -454,73 +454,73 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgIsNull() {
-            addCriterion("comment_img is null");
+        public Criteria andCommentLevelIsNull() {
+            addCriterion("comment_level is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgIsNotNull() {
-            addCriterion("comment_img is not null");
+        public Criteria andCommentLevelIsNotNull() {
+            addCriterion("comment_level is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgEqualTo(String value) {
-            addCriterion("comment_img =", value, "commentImg");
+        public Criteria andCommentLevelEqualTo(String value) {
+            addCriterion("comment_level =", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgNotEqualTo(String value) {
-            addCriterion("comment_img <>", value, "commentImg");
+        public Criteria andCommentLevelNotEqualTo(String value) {
+            addCriterion("comment_level <>", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgGreaterThan(String value) {
-            addCriterion("comment_img >", value, "commentImg");
+        public Criteria andCommentLevelGreaterThan(String value) {
+            addCriterion("comment_level >", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgGreaterThanOrEqualTo(String value) {
-            addCriterion("comment_img >=", value, "commentImg");
+        public Criteria andCommentLevelGreaterThanOrEqualTo(String value) {
+            addCriterion("comment_level >=", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgLessThan(String value) {
-            addCriterion("comment_img <", value, "commentImg");
+        public Criteria andCommentLevelLessThan(String value) {
+            addCriterion("comment_level <", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgLessThanOrEqualTo(String value) {
-            addCriterion("comment_img <=", value, "commentImg");
+        public Criteria andCommentLevelLessThanOrEqualTo(String value) {
+            addCriterion("comment_level <=", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgLike(String value) {
-            addCriterion("comment_img like", value, "commentImg");
+        public Criteria andCommentLevelLike(String value) {
+            addCriterion("comment_level like", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgNotLike(String value) {
-            addCriterion("comment_img not like", value, "commentImg");
+        public Criteria andCommentLevelNotLike(String value) {
+            addCriterion("comment_level not like", value, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgIn(List<String> values) {
-            addCriterion("comment_img in", values, "commentImg");
+        public Criteria andCommentLevelIn(List<String> values) {
+            addCriterion("comment_level in", values, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgNotIn(List<String> values) {
-            addCriterion("comment_img not in", values, "commentImg");
+        public Criteria andCommentLevelNotIn(List<String> values) {
+            addCriterion("comment_level not in", values, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgBetween(String value1, String value2) {
-            addCriterion("comment_img between", value1, value2, "commentImg");
+        public Criteria andCommentLevelBetween(String value1, String value2) {
+            addCriterion("comment_level between", value1, value2, "commentLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCommentImgNotBetween(String value1, String value2) {
-            addCriterion("comment_img not between", value1, value2, "commentImg");
+        public Criteria andCommentLevelNotBetween(String value1, String value2) {
+            addCriterion("comment_level not between", value1, value2, "commentLevel");
             return (Criteria) this;
         }
 

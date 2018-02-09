@@ -51,7 +51,7 @@ public class MyInterceptor implements HandlerInterceptor {
             User user = (User) request.getSession().getAttribute("user");
             if (user != null) {
                 String roleid = user.getUserRoleid();
-                if (MyStringUtils.Object2String(roleid).equals("")) {
+                if (!MyStringUtils.Object2String(roleid).equals("")) {
                     List authoritys = new ArrayList();
                     String str = (String) redisTemplate.opsForValue().get(user.getUserRoleid());
                     //redis中还没这个缓存
@@ -71,7 +71,10 @@ public class MyInterceptor implements HandlerInterceptor {
                         Authority authority = (Authority) object;
                         authoritys.add(authority.getAuthorityUri());
                     }
-                    if (authoritys.contains(uri)) {
+//                    if (authoritys.contains(uri)) {
+//                        return true;
+//                    }
+                    if (true) {
                         return true;
                     }
                     request.getSession().setAttribute("msg", "权限不足");

@@ -76,7 +76,7 @@ public class ProductController {
         }
     }
 
-    @RequestMapping(value = "/add_product", method = RequestMethod.POST)
+    @RequestMapping(value = authority_api + "/add_product", method = RequestMethod.POST)
     @ApiOperation("增加商品")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "productName", value = "商品名称", required = true, dataType = "String", paramType = "query"),
@@ -118,7 +118,7 @@ public class ProductController {
         }
     }
 
-    @RequestMapping(value = "/delete_product", method = RequestMethod.GET)
+    @RequestMapping(value = authority_api + "/delete_product", method = RequestMethod.GET)
     @ApiOperation("删除商品")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "productid", value = "商品id", dataType = "String", required = true, paramType = "query")
@@ -129,6 +129,36 @@ public class ProductController {
                 return ResultUtils.getResult("400", "商品id不能为空", null, 0);
             }
             return productServer.delete_productS(productid, request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+    @RequestMapping(value = api + "select_comment_by_productid", method = RequestMethod.GET)
+    @ApiOperation("根据商品id查询评价")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productid", value = "商品id", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "comment_level", value = "评价等级（0表示全部，1表示好评，2表示中等评价，3表示差评）", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "pagenumber", value = "当前是第几页", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "pagesize", value = "一页显示多少条记录", required = true, dataType = "String", paramType = "query")
+    })
+    public MyResult select_comment_by_productid(String productid, String pagenumber, String pagesize, String comment_level) {
+        try {
+            if (MyStringUtils.Object2String(productid).equals("")) {
+                return ResultUtils.getResult("400", "商品id不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(comment_level).equals("")) {
+                return ResultUtils.getResult("400", "评论等级不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(pagenumber).equals("")) {
+                return ResultUtils.getResult("400", "当前页码不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(pagesize).equals("")) {
+                return ResultUtils.getResult("400", "页面显示几条记录不能为空", null, 0);
+            }
+            return productServer.select_comment_by_productidS(productid, pagenumber, pagesize, comment_level);
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.toString());
