@@ -58,6 +58,7 @@ public interface Constant {
     String cs_buy = "cs_buy";
     String cs_afterserverimgs = "cs_afterserverimgs";
     String cs_productimgs = "cs_productimgs";
+    String cs_commentimgs = "cs_commentimgs";
     /**
      * 对系统的操作内容
      */
@@ -91,6 +92,8 @@ public interface Constant {
     String productinfo = "productinfo";
     //商品集合-信息过期时间----1小时
     int product_time = 60 * 60;
-    //商品id为XXX的评论数
+    //商品id为XXX的评论数目
     String commentall4productid = "commentall4productid";
+    //商品id为XXX的评论集合
+    String commentlist4productid = "commentlist4productid";
 }

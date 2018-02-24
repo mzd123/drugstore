@@ -6,6 +6,7 @@ import com.mzd.drugstore.constant.Constant;
 import com.mzd.drugstore.server.UserServer;
 import com.mzd.drugstore.utils.MyStringUtils;
 import com.mzd.drugstore.utils.ResultUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
+@Api("UserController")
 public class UserController {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -91,9 +93,10 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "productid", value = "商品id", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "commentContent", value = "评论内容", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "imgs", value = "评论图片集合", required = true, dataType = "file", paramType = "query"),
+            @ApiImplicitParam(name = "imgs", value = "评论图片集合", required = false, dataType = "file", paramType = "query"),
+            @ApiImplicitParam(name = "commentLevel", value = "评论等级", required = false, dataType = "String", paramType = "query")
     })
-    public MyResult add_comment(HttpServletRequest request, String productid, String commentContent, MultipartFile[] imgs) {
+    public MyResult add_comment(HttpServletRequest request, String productid, String commentContent, String commentLevel, MultipartFile[] imgs) {
         try {
             if (MyStringUtils.Object2String(productid).equals("")) {
                 return ResultUtils.getResult("400", "密码不能为空", null, 0);
@@ -102,7 +105,7 @@ public class UserController {
                 return ResultUtils.getResult("400", "用户名不能为空", null, 0);
             }
             User user = (User) request.getSession().getAttribute("user");
-            int i = userServer.add_commentS(user, productid, commentContent, imgs);
+            int i = userServer.add_commentS(user, productid, commentContent, imgs, commentLevel);
             if (i > 0) {
                 return ResultUtils.getResult("200", "评论成功", null, 0);
             }

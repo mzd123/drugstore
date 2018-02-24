@@ -30,4 +30,13 @@ public class Authority {
     public void setAuthorityUri(String authorityUri) {
         this.authorityUri = authorityUri == null ? null : authorityUri.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "authorityId='" + authorityId + '\'' +
+                ", authorityName='" + authorityName + '\'' +
+                ", authorityUri='" + authorityUri + '\'' +
+                '}';
+    }
 }

@@ -9,7 +9,7 @@ public class Items {
 
     private String productNumber;
 
-    private String carId;
+    private String userId;
 
     private String itemsMoney;
 
@@ -47,12 +47,12 @@ public class Items {
         this.productNumber = productNumber == null ? null : productNumber.trim();
     }
 
-    public String getCarId() {
-        return carId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCarId(String carId) {
-        this.carId = carId == null ? null : carId.trim();
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getItemsMoney() {

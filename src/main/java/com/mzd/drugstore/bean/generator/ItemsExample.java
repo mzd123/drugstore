@@ -384,73 +384,73 @@ public class ItemsExample {
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIsNull() {
-            addCriterion("car_id is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIsNotNull() {
-            addCriterion("car_id is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdEqualTo(String value) {
-            addCriterion("car_id =", value, "carId");
+        public Criteria andUserIdEqualTo(String value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotEqualTo(String value) {
-            addCriterion("car_id <>", value, "carId");
+        public Criteria andUserIdNotEqualTo(String value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdGreaterThan(String value) {
-            addCriterion("car_id >", value, "carId");
+        public Criteria andUserIdGreaterThan(String value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdGreaterThanOrEqualTo(String value) {
-            addCriterion("car_id >=", value, "carId");
+        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdLessThan(String value) {
-            addCriterion("car_id <", value, "carId");
+        public Criteria andUserIdLessThan(String value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdLessThanOrEqualTo(String value) {
-            addCriterion("car_id <=", value, "carId");
+        public Criteria andUserIdLessThanOrEqualTo(String value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdLike(String value) {
-            addCriterion("car_id like", value, "carId");
+        public Criteria andUserIdLike(String value) {
+            addCriterion("user_id like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotLike(String value) {
-            addCriterion("car_id not like", value, "carId");
+        public Criteria andUserIdNotLike(String value) {
+            addCriterion("user_id not like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdIn(List<String> values) {
-            addCriterion("car_id in", values, "carId");
+        public Criteria andUserIdIn(List<String> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotIn(List<String> values) {
-            addCriterion("car_id not in", values, "carId");
+        public Criteria andUserIdNotIn(List<String> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdBetween(String value1, String value2) {
-            addCriterion("car_id between", value1, value2, "carId");
+        public Criteria andUserIdBetween(String value1, String value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCarIdNotBetween(String value1, String value2) {
-            addCriterion("car_id not between", value1, value2, "carId");
+        public Criteria andUserIdNotBetween(String value1, String value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 

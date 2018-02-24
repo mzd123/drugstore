@@ -1,6 +1,7 @@
 package com.mzd.drugstore.server;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mzd.drugstore.bean.backresult.RoleAuthorityUri;
 import com.mzd.drugstore.bean.generator.Authority;
 import com.mzd.drugstore.bean.generator.MyLog;
@@ -41,7 +42,7 @@ public class CommonServer {
                 roleAuthorityUri = new RoleAuthorityUri();
                 roleAuthorityUri.setRoleid(roleid);
                 roleAuthorityUri.setList(list1);
-                redisTemplate.opsForValue().set(roleid, JSONObject.toJSONString(roleAuthorityUri));
+                redisTemplate.opsForValue().set(roleid, JSONObject.toJSONString(roleAuthorityUri, SerializerFeature.WriteMapNullValue));
             }
         }
         return roleAuthorityUri;

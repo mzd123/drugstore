@@ -54,21 +54,24 @@ public class MyInterceptor implements HandlerInterceptor {
                 if (!MyStringUtils.Object2String(roleid).equals("")) {
                     List authoritys = new ArrayList();
                     String str = (String) redisTemplate.opsForValue().get(user.getUserRoleid());
-                    //redis中还没这个缓存
+                    System.out.println(str);
                     List list = new ArrayList();
+                    //redis中还没这个缓存
                     if (MyStringUtils.Object2String(str).equals("")) {
                         RoleAuthorityUri roleAuthorityUri = commonServer.getRoleAuthorityUriByRoleidS(user.getUserRoleid());
                         list = roleAuthorityUri.getList();
                     } else {
-                        JSONObject jsonObject = JSON.parseObject(str);
-                        list = jsonObject.getJSONArray("list");
-                        // list.stream().forEach(System.out::println);
+                        RoleAuthorityUri roleAuthorityUri = JSON.parseObject(str, RoleAuthorityUri.class);
+                        //jsonObject.getJSONArray("list").stream().forEach(System.out::println);
+                        list = roleAuthorityUri.getList();
+                        //list.stream().forEach(System.out::println);
                     }
                     if (list == null || list.size() == 0) {
                         request.getSession().setAttribute("msg", "你未被赋权");
                     }
                     for (Object object : list) {
                         Authority authority = (Authority) object;
+                        System.out.println(authority.toString());
                         authoritys.add(authority.getAuthorityUri());
                     }
 //                    if (authoritys.contains(uri)) {

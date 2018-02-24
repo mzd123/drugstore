@@ -6,7 +6,7 @@
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="product_number" jdbcType="VARCHAR" property="productNumber" />
-    <result column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="items_money" jdbcType="VARCHAR" property="itemsMoney" />
     <result column="items_status" jdbcType="VARCHAR" property="itemsStatus" />
   </resultMap>
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    items_id, product_id, order_id, product_number, car_id, items_money, items_status
+    items_id, product_id, order_id, product_number, user_id, items_money, items_status
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.ItemsExample" resultMap="BaseResultMap">
     select
@@ -93,10 +93,10 @@
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Items">
     insert into cs_items (items_id, product_id, order_id, 
-      product_number, car_id, items_money, 
+      product_number, user_id, items_money, 
       items_status)
     values (#{itemsId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
-      #{productNumber,jdbcType=VARCHAR}, #{carId,jdbcType=VARCHAR}, #{itemsMoney,jdbcType=VARCHAR}, 
+      #{productNumber,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{itemsMoney,jdbcType=VARCHAR}, 
       #{itemsStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Items">
@@ -114,8 +114,8 @@
       <if test="productNumber != null">
         product_number,
       </if>
-      <if test="carId != null">
-        car_id,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="itemsMoney != null">
         items_money,
@@ -137,8 +137,8 @@
       <if test="productNumber != null">
         #{productNumber,jdbcType=VARCHAR},
       </if>
-      <if test="carId != null">
-        #{carId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="itemsMoney != null">
         #{itemsMoney,jdbcType=VARCHAR},
@@ -169,8 +169,8 @@
       <if test="record.productNumber != null">
         product_number = #{record.productNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.carId != null">
-        car_id = #{record.carId,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.itemsMoney != null">
         items_money = #{record.itemsMoney,jdbcType=VARCHAR},
@@ -189,7 +189,7 @@
       product_id = #{record.productId,jdbcType=VARCHAR},
       order_id = #{record.orderId,jdbcType=VARCHAR},
       product_number = #{record.productNumber,jdbcType=VARCHAR},
-      car_id = #{record.carId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       items_money = #{record.itemsMoney,jdbcType=VARCHAR},
       items_status = #{record.itemsStatus,jdbcType=VARCHAR}
     <if test="_parameter != null">

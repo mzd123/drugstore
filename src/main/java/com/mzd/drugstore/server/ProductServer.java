@@ -2,6 +2,7 @@ package com.mzd.drugstore.server;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mzd.drugstore.bean.MyResult;
@@ -124,7 +125,7 @@ public class ProductServer {
             file.mkdirs();
         }
         //先将商品的主图片存入服务器
-        file = new File(Constant.path_product + classId + "/" + productid + "/" + image.getOriginalFilename());
+        file = new File(Constant.path_product + classId + "/" + productid + "/" + "main_" + image.getOriginalFilename());
         image.transferTo(file);
         /**
          * 先操作商品表
@@ -137,7 +138,7 @@ public class ProductServer {
         product.setProductDescription(productDescription);
         product.setProductNumber(productNumber);
         product.setProductId(productid);
-        product.setProductMainImg(Constant.path_product + classId + "/" + productid + "/" + image.getOriginalFilename());
+        product.setProductMainImg(Constant.path_product + classId + "/" + productid + "/" + "main_" + image.getOriginalFilename());
         product.setProductStatus(Constant.liefstatus);
         int i = productDao.add_productD(product);
         List<Productimgs> list = new ArrayList<>();
@@ -145,11 +146,12 @@ public class ProductServer {
          * 将图片存入服务器
          */
         for (int k = 0; k < images.length; k++) {
-            file = new File(Constant.path_product + classId + "/" + productid + "/" + images[k].getOriginalFilename());
+            String Imgid = MyStringUtils.getuuid();
+            file = new File(Constant.path_product + classId + "/" + productid + "/" + Imgid + "_" + images[k].getOriginalFilename());
             images[k].transferTo(file);
             Productimgs productimgs = new Productimgs();
-            productimgs.setImgid(MyStringUtils.getuuid());
-            productimgs.setImgpath(Constant.path_product + classId + "/" + productid + "/" + images[k].getOriginalFilename());
+            productimgs.setImgid(Imgid);
+            productimgs.setImgpath(Constant.path_product + classId + "/" + productid + "/" + Imgid + "_" + images[k].getOriginalFilename());
             productimgs.setImgStatus(Constant.liefstatus);
             productimgs.setProductid(productid);
             list.add(productimgs);
@@ -309,7 +311,15 @@ public class ProductServer {
     public MyResult select_comment_by_productidS(String productid, String pagenumber, String pagesize, String comment_level) {
         //这里就不使用mybatis的分页插件了，因为这个东西比较蠢，每次分页条件都是写在最后的，
         // 我现在需要的是取指定个数的评论对象，而不是指定个数的评论加图片左连接之后的对象
-        List<ProductCommentAndImgs> list = productDao.select_comment_by_productidD(productid, pagenumber, pagesize, comment_level);
+
+        List<ProductCommentAndImgs> list = new ArrayList<>();
+        String string = (String) redisTemplate.opsForValue().get(Constant.commentlist4productid + productid + pagenumber + pagesize);
+        if (MyStringUtils.Object2String(string).equals("")) {
+            list = productDao.select_comment_by_productidD(productid, pagenumber, pagesize, comment_level);
+            redisTemplate.opsForValue().set(Constant.commentlist4productid + productid + pagenumber + pagesize, JSON.toJSONString(list));
+        } else {
+            list = JSONObject.parseArray(string, ProductCommentAndImgs.class);
+        }
         //总共有多少条
         int i = 0;
         /**
