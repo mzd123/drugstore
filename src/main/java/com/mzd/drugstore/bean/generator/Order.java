@@ -11,11 +11,13 @@ public class Order {
 
     private String orderOrigin;
 
-    private String userId;
+    private String receiver;
 
     private String addressId;
 
     private String orderStatus;
+
+    private String tel;
 
     public String getOrderId() {
         return orderId;
@@ -57,12 +59,12 @@ public class Order {
         this.orderOrigin = orderOrigin == null ? null : orderOrigin.trim();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setReceiver(String receiver) {
+        this.receiver = receiver == null ? null : receiver.trim();
     }
 
     public String getAddressId() {
@@ -79,5 +81,13 @@ public class Order {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus == null ? null : orderStatus.trim();
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 }

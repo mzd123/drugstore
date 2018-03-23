@@ -7,9 +7,10 @@
     <result column="order_stage" jdbcType="VARCHAR" property="orderStage" />
     <result column="order_createtime" jdbcType="VARCHAR" property="orderCreatetime" />
     <result column="order_origin" jdbcType="VARCHAR" property="orderOrigin" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="address_id" jdbcType="VARCHAR" property="addressId" />
     <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,8 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, order_summoney, order_stage, order_createtime, order_origin, user_id, address_id, 
-    order_status
+    order_id, order_summoney, order_stage, order_createtime, order_origin, receiver, 
+    address_id, order_status, tel
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.OrderExample" resultMap="BaseResultMap">
     select
@@ -95,11 +96,13 @@
   </delete>
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Order">
     insert into cs_order (order_id, order_summoney, order_stage, 
-      order_createtime, order_origin, user_id, 
-      address_id, order_status)
+      order_createtime, order_origin, receiver, 
+      address_id, order_status, tel
+      )
     values (#{orderId,jdbcType=VARCHAR}, #{orderSummoney,jdbcType=VARCHAR}, #{orderStage,jdbcType=VARCHAR}, 
-      #{orderCreatetime,jdbcType=VARCHAR}, #{orderOrigin,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{addressId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR})
+      #{orderCreatetime,jdbcType=VARCHAR}, #{orderOrigin,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Order">
     insert into cs_order
@@ -119,14 +122,17 @@
       <if test="orderOrigin != null">
         order_origin,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="receiver != null">
+        receiver,
       </if>
       <if test="addressId != null">
         address_id,
       </if>
       <if test="orderStatus != null">
         order_status,
+      </if>
+      <if test="tel != null">
+        tel,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -145,14 +151,17 @@
       <if test="orderOrigin != null">
         #{orderOrigin,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
       </if>
       <if test="addressId != null">
         #{addressId,jdbcType=VARCHAR},
       </if>
       <if test="orderStatus != null">
         #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,14 +189,17 @@
       <if test="record.orderOrigin != null">
         order_origin = #{record.orderOrigin,jdbcType=VARCHAR},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=VARCHAR},
       </if>
       <if test="record.addressId != null">
         address_id = #{record.addressId,jdbcType=VARCHAR},
       </if>
       <if test="record.orderStatus != null">
         order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -201,9 +213,10 @@
       order_stage = #{record.orderStage,jdbcType=VARCHAR},
       order_createtime = #{record.orderCreatetime,jdbcType=VARCHAR},
       order_origin = #{record.orderOrigin,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=VARCHAR},
+      receiver = #{record.receiver,jdbcType=VARCHAR},
       address_id = #{record.addressId,jdbcType=VARCHAR},
-      order_status = #{record.orderStatus,jdbcType=VARCHAR}
+      order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

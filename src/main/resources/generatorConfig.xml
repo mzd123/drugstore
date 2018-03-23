@@ -17,6 +17,7 @@
                         connectionURL="jdbc:mysql://localhost:3307/drugstore?useSSL=true&amp;serverTimezone=UTC&amp;characterEncoding=utf-8"
                         userId="root"
                         password="root">
+            <property name="useInformationSchema" value="true"></property>
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.mzd.drugstore.bean.generator" targetProject="src/main/java">
@@ -43,8 +44,8 @@
         <!--<table tableName="cs_buy" domainObjectName="Buy"/>-->
         <!--<table tableName="cs_comment" domainObjectName="Comment"/>-->
         <!--<table tableName="cs_commentimgs" domainObjectName="Commentimgs"/>-->
-        <table tableName="cs_items" domainObjectName="Items"/>
-        <!--<table tableName="cs_afterserver" domainObjectName="Afterserver"/>-->
+        <!--<table tableName="cs_items" domainObjectName="Items"/>-->
+        <table tableName="cs_afterserver" domainObjectName="Afterserver"/>
         <!--<table tableName="cs_server" domainObjectName="Server"/>-->
         <!--<table tableName="cs_storemessage" domainObjectName="Storemessage"/>-->
         <!--<table tableName="cs_log" domainObjectName="MyLog"/>-->

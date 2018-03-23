@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.ItemsBatchMapper">
+    <resultMap id="items_batch" type="com.mzd.drugstore.bean.generator.Items">
+        <result column="items_id" jdbcType="VARCHAR" property="itemsId"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="order_id" jdbcType="VARCHAR" property="orderId"/>
+        <result column="product_number" jdbcType="VARCHAR" property="productNumber"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="items_money" jdbcType="VARCHAR" property="itemsMoney"/>
+        <result column="items_status" jdbcType="VARCHAR" property="itemsStatus"/>
+    </resultMap>
+    <select id="getItems_by_itemsidsM" resultMap="items_batch">
+        SELECT * FROM cs_items WHERE items_id in
+        <foreach item="itemid" collection="list" index="index" open="(" separator="," close=")">
+            #{itemid}
+        </foreach>
+        <!--没有被删除的-->
+        and items_status=1
+        <!--没有下过单的-->
+        and order_id=''
+    </select>
+</mapper>

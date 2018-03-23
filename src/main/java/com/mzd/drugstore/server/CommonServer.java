@@ -3,6 +3,7 @@ package com.mzd.drugstore.server;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mzd.drugstore.bean.backresult.RoleAuthorityUri;
+import com.mzd.drugstore.bean.dictionary.MyTable;
 import com.mzd.drugstore.bean.generator.Authority;
 import com.mzd.drugstore.bean.generator.MyLog;
 import com.mzd.drugstore.bean.generator.Role;
@@ -57,5 +58,14 @@ public class CommonServer {
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = Exception.class)
     public int insertLogS(MyLog myLog) throws Exception {
         return commonDao.insertLogD(myLog);
+    }
+
+    /**
+     * 查询数据库字典
+     *
+     * @return
+     */
+    public List<MyTable> getdictionaryS() {
+        return commonDao.dictionaryD();
     }
 }

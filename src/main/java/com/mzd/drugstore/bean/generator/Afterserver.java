@@ -13,10 +13,6 @@ public class Afterserver {
 
     private String afterserverStage;
 
-    private String afterserverImg;
-
-    private String afterserverClasses;
-
     public String getAfterserverId() {
         return afterserverId;
     }
@@ -63,21 +59,5 @@ public class Afterserver {
 
     public void setAfterserverStage(String afterserverStage) {
         this.afterserverStage = afterserverStage == null ? null : afterserverStage.trim();
-    }
-
-    public String getAfterserverImg() {
-        return afterserverImg;
-    }
-
-    public void setAfterserverImg(String afterserverImg) {
-        this.afterserverImg = afterserverImg == null ? null : afterserverImg.trim();
-    }
-
-    public String getAfterserverClasses() {
-        return afterserverClasses;
-    }
-
-    public void setAfterserverClasses(String afterserverClasses) {
-        this.afterserverClasses = afterserverClasses == null ? null : afterserverClasses.trim();
     }
 }

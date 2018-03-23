@@ -8,8 +8,6 @@
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="afterserver_createtime" jdbcType="VARCHAR" property="afterserverCreatetime" />
     <result column="afterserver_stage" jdbcType="VARCHAR" property="afterserverStage" />
-    <result column="afterserver_img" jdbcType="VARCHAR" property="afterserverImg" />
-    <result column="afterserver_classes" jdbcType="VARCHAR" property="afterserverClasses" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,8 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    afterserver_id, afterserver_class, user_id, order_id, afterserver_createtime, afterserver_stage, 
-    afterserver_img, afterserver_classes
+    afterserver_id, afterserver_class, user_id, order_id, afterserver_createtime, afterserver_stage
   </sql>
   <select id="selectByExample" parameterType="com.mzd.drugstore.bean.generator.AfterserverExample" resultMap="BaseResultMap">
     select
@@ -96,12 +93,10 @@
   <insert id="insert" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
     insert into cs_afterserver (afterserver_id, afterserver_class, 
       user_id, order_id, afterserver_createtime, 
-      afterserver_stage, afterserver_img, afterserver_classes
-      )
+      afterserver_stage)
     values (#{afterserverId,jdbcType=VARCHAR}, #{afterserverClass,jdbcType=VARCHAR}, 
       #{userId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{afterserverCreatetime,jdbcType=VARCHAR}, 
-      #{afterserverStage,jdbcType=VARCHAR}, #{afterserverImg,jdbcType=VARCHAR}, #{afterserverClasses,jdbcType=VARCHAR}
-      )
+      #{afterserverStage,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mzd.drugstore.bean.generator.Afterserver">
     insert into cs_afterserver
@@ -124,12 +119,6 @@
       <if test="afterserverStage != null">
         afterserver_stage,
       </if>
-      <if test="afterserverImg != null">
-        afterserver_img,
-      </if>
-      <if test="afterserverClasses != null">
-        afterserver_classes,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="afterserverId != null">
@@ -149,12 +138,6 @@
       </if>
       <if test="afterserverStage != null">
         #{afterserverStage,jdbcType=VARCHAR},
-      </if>
-      <if test="afterserverImg != null">
-        #{afterserverImg,jdbcType=VARCHAR},
-      </if>
-      <if test="afterserverClasses != null">
-        #{afterserverClasses,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -185,12 +168,6 @@
       <if test="record.afterserverStage != null">
         afterserver_stage = #{record.afterserverStage,jdbcType=VARCHAR},
       </if>
-      <if test="record.afterserverImg != null">
-        afterserver_img = #{record.afterserverImg,jdbcType=VARCHAR},
-      </if>
-      <if test="record.afterserverClasses != null">
-        afterserver_classes = #{record.afterserverClasses,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -203,9 +180,7 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       order_id = #{record.orderId,jdbcType=VARCHAR},
       afterserver_createtime = #{record.afterserverCreatetime,jdbcType=VARCHAR},
-      afterserver_stage = #{record.afterserverStage,jdbcType=VARCHAR},
-      afterserver_img = #{record.afterserverImg,jdbcType=VARCHAR},
-      afterserver_classes = #{record.afterserverClasses,jdbcType=VARCHAR}
+      afterserver_stage = #{record.afterserverStage,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

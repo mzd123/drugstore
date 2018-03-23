@@ -1,5 +1,6 @@
 package com.mzd.drugstore.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzd.drugstore.bean.MyResult;
 import com.mzd.drugstore.bean.generator.User;
 import com.mzd.drugstore.constant.Constant;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @Api("UserController")
@@ -117,5 +119,140 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = authority_api + "select_my_car", method = RequestMethod.GET)
+    @ApiOperation("查询我的购物车")
+    public MyResult select_my_car() {
+        try {
+            return userServer.select_my_carS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
 
+    @RequestMapping(value = authority_api + "add_my_car", method = RequestMethod.GET)
+    @ApiOperation("加入购物车")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productId", value = "商品id", paramType = "query", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "productNumber", value = "商品数量（买多少个）", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "itemsMoney", value = "小计多少钱", dataType = "String", required = true, paramType = "query")
+    })
+    public MyResult add_my_car(String productId, String productNumber, String itemsMoney) {
+        try {
+            if (MyStringUtils.Object2String(productId).equals("")) {
+                return ResultUtils.getResult("400", "商品id不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(productNumber).equals("")) {
+                return ResultUtils.getResult("400", "商品数量不能位空", null, 0);
+            }
+            if (MyStringUtils.Object2String(itemsMoney).equals("")) {
+                return ResultUtils.getResult("400", "商品小计总额不能位空", null, 0);
+            }
+            return userServer.add_my_carS(productId, productNumber, itemsMoney);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+    @RequestMapping(value = authority_api + "delete_my_car", method = RequestMethod.GET)
+    @ApiOperation("从购物车中删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "itemid", value = "商品项id", dataType = "String", required = true, paramType = "query")
+    })
+    public MyResult delete_my_car(String itemid) {
+        try {
+            if (MyStringUtils.Object2String(itemid).equals("")) {
+                return ResultUtils.getResult("400", "商品项id不能为空", null, 0);
+            }
+            return userServer.delete_my_carS(itemid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+    @RequestMapping(value = authority_api + "select_my_address", method = RequestMethod.GET)
+    @ApiOperation("查询我的收货地址")
+    public MyResult select_my_address() {
+        try {
+            return userServer.select_my_addressS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+    @RequestMapping(value = authority_api + "add_my_address", method = RequestMethod.GET)
+    @ApiOperation("新增我的收货地址")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "address", value = "地址", dataType = "String", required = true, paramType = "query")
+    })
+    public MyResult add_my_address(String address) {
+        try {
+            if (MyStringUtils.Object2String(address).equals("")) {
+                return ResultUtils.getResult("400", "地址不能为空", null, 0);
+            }
+            return userServer.add_my_address(address);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+    @RequestMapping(value = authority_api + "delete_my_address", method = RequestMethod.GET)
+    @ApiOperation("删除我的收货地址")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "addressid", value = "收货地址id", dataType = "String", required = true, paramType = "query"),
+    })
+    public MyResult delete_my_address(String addressid) {
+        try {
+            if (MyStringUtils.Object2String(addressid).equals("")) {
+                return ResultUtils.getResult("400", "地址id不能为空", null, 0);
+            }
+            return userServer.delete_my_addressD(addressid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
+
+
+    @RequestMapping(value = authority_api + "get_an_order", method = RequestMethod.GET)
+    @ApiOperation("下单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "items_ids_jsonstring", value = "商品项id集合转json字符串", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "addressid", value = "收货地址id", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "receiver", value = "收货地址人姓名", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "tel", value = "联系电话", dataType = "String", required = true, paramType = "query")
+    })
+    public MyResult get_an_order(String items_ids_jsonstring, String addressid, String receiver, String tel) {
+        try {
+            if (MyStringUtils.Object2String(items_ids_jsonstring).equals("")) {
+                return ResultUtils.getResult("400", "商品项id集合转json的字符串不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(addressid).equals("")) {
+                return ResultUtils.getResult("400", "收货地址不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(receiver).equals("")) {
+                return ResultUtils.getResult("400", "收货人姓名不能为空", null, 0);
+            }
+            if (MyStringUtils.Object2String(tel).equals("")) {
+                return ResultUtils.getResult("400", "联系电话不能为空", null, 0);
+            }
+            List<String> list = JSONObject.parseArray(items_ids_jsonstring, String.class);
+            //list.stream().forEach(System.out::println);
+            return userServer.get_an_orderS(list, addressid, receiver, tel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.toString());
+            return ResultUtils.getResult("500", "服务器内部错误", null, 0);
+        }
+    }
 }

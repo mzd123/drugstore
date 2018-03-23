@@ -70,4 +70,17 @@ public class Items {
     public void setItemsStatus(String itemsStatus) {
         this.itemsStatus = itemsStatus == null ? null : itemsStatus.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Items{" +
+                "itemsId='" + itemsId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", productNumber='" + productNumber + '\'' +
+                ", userId='" + userId + '\'' +
+                ", itemsMoney='" + itemsMoney + '\'' +
+                ", itemsStatus='" + itemsStatus + '\'' +
+                '}';
+    }
 }

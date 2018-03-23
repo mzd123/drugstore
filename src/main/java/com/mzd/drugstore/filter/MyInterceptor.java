@@ -54,7 +54,6 @@ public class MyInterceptor implements HandlerInterceptor {
                 if (!MyStringUtils.Object2String(roleid).equals("")) {
                     List authoritys = new ArrayList();
                     String str = (String) redisTemplate.opsForValue().get(user.getUserRoleid());
-                    System.out.println(str);
                     List list = new ArrayList();
                     //redis中还没这个缓存
                     if (MyStringUtils.Object2String(str).equals("")) {
@@ -71,7 +70,6 @@ public class MyInterceptor implements HandlerInterceptor {
                     }
                     for (Object object : list) {
                         Authority authority = (Authority) object;
-                        System.out.println(authority.toString());
                         authoritys.add(authority.getAuthorityUri());
                     }
 //                    if (authoritys.contains(uri)) {
@@ -88,7 +86,7 @@ public class MyInterceptor implements HandlerInterceptor {
                 request.getSession().setAttribute("msg", "你还没登入过，请先登入");
             }
         }
-        response.sendRedirect("/login.jsp");
+        response.sendRedirect("/views/login.jsp");
         return false;
     }
 

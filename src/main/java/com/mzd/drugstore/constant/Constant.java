@@ -96,4 +96,27 @@ public interface Constant {
     String commentall4productid = "commentall4productid";
     //商品id为XXX的评论集合
     String commentlist4productid = "commentlist4productid";
+    /**
+     * 我的购物车
+     */
+    String mycar = "mycar";
+    //我的收货地址
+    String address = "address";
+    //来源：下单
+    String firstorder = "1";
+    //来源：售后服务
+    String afterorder = "2";
+    /**
+     * 待付款状态
+     */
+    String Pending_payment = "Pending_payment";
+    /**
+     * 已付款待收货
+     */
+    String Already_paid = "Already_paid";
+    /**
+     * 已收货
+     */
+    String received = "received";
+
 }

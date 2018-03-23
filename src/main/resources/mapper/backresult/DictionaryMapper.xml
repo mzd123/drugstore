@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzd.drugstore.mapper.backresult.DictionaryMapper">
+    <resultMap id="MyTable" type="com.mzd.drugstore.bean.dictionary.MyTable">
+        <result column="table_name" jdbcType="VARCHAR" property="tablename"/>
+        <collection property="list" ofType="com.mzd.drugstore.bean.dictionary.MyColumn">
+            <result column="column_name" jdbcType="VARCHAR" property="columnname"/>
+            <result column="column_comment" jdbcType="VARCHAR" property="columnexplain"/>
+        </collection>
+    </resultMap>
+    <select id="dictionaryM" resultMap="MyTable">
+        select column_name,column_comment,table_name from INFORMATION_SCHEMA.Columns where   table_schema='drugstore'
+    </select>
+</mapper>

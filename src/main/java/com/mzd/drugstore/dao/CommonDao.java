@@ -1,9 +1,11 @@
 package com.mzd.drugstore.dao;
 
+import com.mzd.drugstore.bean.dictionary.MyTable;
 import com.mzd.drugstore.bean.generator.Authority;
 import com.mzd.drugstore.bean.generator.MyLog;
 import com.mzd.drugstore.bean.generator.RoleExample;
 import com.mzd.drugstore.mapper.backresult.AuthorityByidListMapper;
+import com.mzd.drugstore.mapper.backresult.DictionaryMapper;
 import com.mzd.drugstore.mapper.backresult.MyLogBatchMapper;
 import com.mzd.drugstore.mapper.generator.MyLogMapper;
 import com.mzd.drugstore.mapper.generator.RoleMapper;
@@ -22,6 +24,8 @@ public class CommonDao {
     private AuthorityByidListMapper authorityByidListMapper;
     @Autowired
     private MyLogBatchMapper myLogBatchMapper;
+    @Autowired
+    private DictionaryMapper dictionaryMapper;
 
     /**
      * 对日志表的处理
@@ -66,4 +70,12 @@ public class CommonDao {
         return myLogBatchMapper.insertLogBatchM(list);
     }
 
+    /**
+     * 查询数据库字典
+     *
+     * @return
+     */
+    public List<MyTable> dictionaryD() {
+        return dictionaryMapper.dictionaryM();
+    }
 }
