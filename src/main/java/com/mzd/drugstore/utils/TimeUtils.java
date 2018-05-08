@@ -1,5 +1,8 @@
 package com.mzd.drugstore.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -292,4 +295,55 @@ public class TimeUtils {
         str = str + haomiao.substring(haomiao.length() - 6, haomiao.length());
         return str;
     }
+
+    /**
+     * 获取任意一天的这一周的最后一天
+     *
+     * @param seday
+     */
+    public String getLastDayOfWeek(String seday) {
+        String var4 = "";
+        if (StringUtils.isEmpty(seday)) {
+            seday = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
+        }
+        try {
+            SimpleDateFormat var1 = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar var2 = Calendar.getInstance();
+            var2.setFirstDayOfWeek(2);
+            var2.setTime(var1.parse(seday));
+            var2.set(7, var2.getFirstDayOfWeek() + 6);
+            Timestamp var3 = new Timestamp(var2.getTime().getTime());
+            var4 = var3.toString().substring(0, 4) + "-" + var3.toString().substring(5, 7) + "-" + var3.toString().substring(8, 10);
+        } catch (Exception var5) {
+
+        }
+        return var4;
+    }
+
+    /**
+     * 获取任意一天的一周开始一天
+     *
+     * @param seday
+     * @return
+     */
+    public String getFirstDayofWeek(String seday) {
+        String var4 = "";
+        if (StringUtils.isEmpty(seday)) {
+            seday = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
+        }
+        try {
+            SimpleDateFormat var1 = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar var2 = Calendar.getInstance();
+            var2.setFirstDayOfWeek(2);
+            var2.setTime(var1.parse(seday));
+            var2.set(7, var2.getFirstDayOfWeek());
+            Timestamp var3 = new Timestamp(var2.getTime().getTime());
+            var4 = var3.toString().substring(0, 4) + "-" + var3.toString().substring(5, 7) + "-" + var3.toString().substring(8, 10);
+        } catch (Exception var5) {
+
+        }
+        return var4;
+    }
+
+
 }

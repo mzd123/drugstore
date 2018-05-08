@@ -16,6 +16,11 @@ public class ResultUtils {
             synchronized (ResultUtils.class) {
                 if (null == myResult) {
                     myResult = new MyResult(code, message, object, pageNum);
+                } else {
+                    myResult.setCode(code);
+                    myResult.setMessage(message);
+                    myResult.setResult(object);
+                    myResult.setPageNum(pageNum);
                 }
             }
         } else {

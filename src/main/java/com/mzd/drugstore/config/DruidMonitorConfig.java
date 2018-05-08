@@ -9,6 +9,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
 
 @Configuration
 public class DruidMonitorConfig {
+//http://127.0.0.1:8080/druid/index.html
 
     /**
      * 注册ServletRegistrationBean
